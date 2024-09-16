@@ -1,0 +1,19 @@
+format: jb-book
+root: intro
+parts:
+ - caption: Tutorials
+   chapters:
+     - file: tutorials/intro
+ - caption: How-tos
+   chapters:
+     - file: how-to-guides/intro
+ - caption: Explanations
+   chapters:
+     - file: explanations/intro
+ - caption: References
+   chapters:
+     - file: references/intro
+ - caption: Back matter
+   chapters:
+     - file: back-matter/glossary
+     - file: back-matter/bibliography

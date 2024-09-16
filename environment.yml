@@ -1,0 +1,10 @@
+name: using-qiime2
+channels:
+- https://packages.qiime2.org/qiime2/2024.10/tiny/passed
+- conda-forge
+- bioconda
+dependencies:
+  - qiime2-tiny
+  - jupyter-book
+  - pip:
+    - q2doc @ git+https://github.com/qiime2/sphinx-ext-qiime2.git@master
