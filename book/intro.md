@@ -38,13 +38,20 @@ Each serves a different goal for the reader:
 
 (acknowledgements)=
 ## Acknowledgements
-The authors would like to thank [those who have contributed](https://github.com/qiime2/docs/graphs/contributors) to the writing of the original QIIME 2 User Documentation; the QIIME 2 Forum [moderators](https://forum.qiime2.org/g/q2-mods) and [community members](https://forum.qiime2.org/u?order=likes_received&period=all); and those who have [contributed to *Using QIIME 2*](https://github.com/caporaso-lab/using-qiime2/graphs/contributors) (that last list isn't very meaningful until the project gets a little further along!).
-All of this content has been instrumental to the development of *Using QIIME 2*.
+*Using QIIME 2* is the result of past, present, and future (🤞) collaborative efforts.
+
+The authors would like to thank [those who have contributed](https://github.com/qiime2/docs/graphs/contributors) to the writing of the original QIIME 2 User Documentation.
+Some of the content in *Using QIIME 2* is sourced directly from that material.
+
+The QIIME 2 Forum [moderators](https://forum.qiime2.org/g/q2-mods) and [community members](https://forum.qiime2.org/u?order=likes_received&period=all) have also been instrumental to the development of ideas and content presented here.
+
+Finally, as this project gets further along, you can see [who has contributed directly to *Using QIIME 2*](https://github.com/caporaso-lab/using-qiime2/graphs/contributors).
+
 
 ## Getting Help
 For the most up-to-date information on how to get help with QIIME 2, as a user or developer, see [here](https://github.com/qiime2/.github/blob/main/SUPPORT.md).
 
-## Funding
+## Funding 🙏
 
 This work was funded in part by NIH National Cancer Institute Informatics Technology for Cancer Research grant [1U24CA248454-01](https://reporter.nih.gov/project-details/9951750).
 
