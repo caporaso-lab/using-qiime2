@@ -1,4 +1,4 @@
-(artifacts-as-metadata)=
+(view-artifacts-as-metadata)=
 # How to use QIIME 2 Artifacts as Metadata
 
 In addition to TSV metadata files, QIIME 2 also supports viewing some kinds of artifacts as metadata.

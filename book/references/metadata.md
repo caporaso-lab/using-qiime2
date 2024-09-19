@@ -19,7 +19,7 @@ This is something that you need to watch out for when working with your metadata
 
 ```{tip}
 In addition to TSV files, some QIIME 2 Artifacts (i.e. ``.qza`` files) can also be used as metadata.
-See the section {ref}`artifacts-as-metadata` below for details.
+See the section [](view-artifacts-as-metadata) below for details.
 ```
 
 (comments-and-empty-rows)=

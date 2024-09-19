@@ -12,6 +12,11 @@ artifact
   When written to file, artifacts typically have the extension {term}`qza`.
   Artifacts can be provided as input to QIIME 2 {term}`actions <action>` or exported from QIIME 2 for use with other software.
 
+DRY
+  An acronym of *Don't Repeat Yourself*, and a critical principle of software engineering and equally applicable in research data management.
+  For more information on DRY and software engineering in general, see {cite:t}`pragprog20`.
+  The {cite:t}`pragprog20` content on DRY is available in a [free example chapter here](https://media.pragprog.com/titles/tpp20/dry.pdf).
+
 method
 	A type of QIIME 2 {term}`action` that takes one or more {term}`artifacts <artifact>` or {term}`parameters <parameter>` as input, and produces one or more {term}`artifacts <artifact>` as output.
   For example, the `filter-features` {term}`action` in the `q2-feature-table` {term}`plugin` is a {term}`method`.
