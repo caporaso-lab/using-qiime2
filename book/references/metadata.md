@@ -1,5 +1,5 @@
 (metadata-formatting-reference)=
-# Metadata Format
+# Formatting metadata for use with QIIME 2
 
 QIIME 2 metadata is most commonly stored in a [TSV (i.e. tab-separated values)](https://en.wikipedia.org/wiki/Tab-separated_values) file.
 These files typically have a ``.tsv`` or ``.txt`` file extension, though it doesn't matter to QIIME 2 what file extension is used.

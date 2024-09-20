@@ -4,18 +4,19 @@
 Metadata provides the key to gaining biological insight from your data.
 In QIIME 2, **sample metadata** may include technical details, such as the DNA barcodes that were used for each sample in a multiplexed sequencing run, or descriptions of the samples, such as which subject, time point, and body site each sample came from in a human microbiome time series.
 **Feature metadata** is often a feature annotation, such as the taxonomy assigned to an amplicon sequence variant (ASV).
-Sample and feature metadata are used by many plugins, and examples are provided in this and other chapters illustrating how to work with metadata in QIIME 2.
+Sample and feature metadata are used by many plugins, and examples are provided throughout *Using QIIME 2* and other documentation illustrating how to work with metadata in QIIME 2.
 
-Metadata is usually specific to a given microbiome study, and compiling sample metadata is typically a step you will have started before beginning your QIIME 2 analysis.
+Sample metadata is usually specific to a given microbiome study, and compiling it is typically a step you will have started before beginning your QIIME 2 analysis.
 It is up to the investigator to decide what information is collected and tracked as metadata.
-QIIME 2 does not place restrictions on what types of metadata are expected to be present; there are no enforced "metadata standards".
+QIIME 2 does not place restrictions on what types of metadata are expected to be present; there is no generally enforced required metadata.
 This is your opportunity to track whatever information you think may be important to your analyses.
 When in doubt, collect as much metadata as possible, as you may not be able to retroactively collect certain types of information.
 
 While QIIME 2 does not enforce standards for what types of metadata to collect, the MIxS and MIMARKS standards {cite}`mimarks` provide recommendations for microbiome studies and may be helpful in determining what information to collect in your study.
-If you plan to deposit your data in a data archive (e.g. [ENA](https://www.ebi.ac.uk/ena) or [Qiita](https://qiita.ucsd.edu/)), it is also important to determine the types of metadata expected by that resource. Different data archives have their own requirements.
+If you plan to deposit your data in a data archive (e.g. [ENA](https://www.ebi.ac.uk/ena) or [Qiita](https://qiita.ucsd.edu/)), it is also important to determine the types of metadata expected by that resource.
+Different data archives have their own requirements.
 
-This chapter presents formatting requirements for QIIME 2 metadata files, discussion of how to validate your metadata files for use with QIIME 2, and examples of how metadata can be viewed and used in QIIME 2.
+For information on how to format your metadata, see [](metadata-formatting-reference).
 
 ````{margin}
 ```{admonition} Video
