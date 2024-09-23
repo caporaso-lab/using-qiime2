@@ -6,13 +6,16 @@ parts:
      - file: tutorials/intro
  - caption: How-tos
    chapters:
-     - file: how-to-guides/intro
+     - file: how-to-guides/merge-metadata
+     - file: how-to-guides/validate-metadata
+     - file: how-to-guides/artifacts-as-metadata
+     - file: how-to-guides/view-visualizations
  - caption: Explanations
    chapters:
-     - file: explanations/intro
+     - file: explanations/metadata
  - caption: References
    chapters:
-     - file: references/intro
+     - file: references/metadata
  - caption: Back matter
    chapters:
      - file: back-matter/glossary
