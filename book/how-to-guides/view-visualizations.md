@@ -1,5 +1,5 @@
 (view-visualizations)=
-# How to view QIIME 2 Visualizations
+# How to view Visualizations
 
 ## QIIME 2 View
 

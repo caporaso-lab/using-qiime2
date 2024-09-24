@@ -1,5 +1,5 @@
 (metadata-explanation)=
-# Metadata in QIIME 2
+# Sample and feature metadata
 
 Metadata provides the key to gaining biological insight from your data.
 In QIIME 2, **sample metadata** may include technical details, such as the DNA barcodes that were used for each sample in a multiplexed sequencing run, or descriptions of the samples, such as which subject, time point, and body site each sample came from in a human microbiome time series.
