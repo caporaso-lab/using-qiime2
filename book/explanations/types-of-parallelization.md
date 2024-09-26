@@ -1,10 +1,10 @@
 (types-of-parallel-support)=
 # Types of parallel computing support
 
-## Formal parallel support
+## Parallel Pipeline execution
 
-QIIME 2's formal parallel computing support uses [Parsl](https://parsl.readthedocs.io/en/stable/1-parsl-introduction.html>), and is only accessible through qiime2 {term}`Pipeline` actions.
-All QIIME 2 `Pipelines` will have parallel computing options (e.g., the `--parallel` parameter in {term}`q2cli`), though whether those actually induce parallel computing is up to the implementation of the `Pipeline`.
+QIIME 2's formal parallel computing support uses [Parsl](https://parsl.readthedocs.io/en/stable/1-parsl-introduction.html>), and enables parallel execution of QIIME 2 {term}`Pipeline` actions.
+All QIIME 2 `Pipelines` will have parallel computing options, notably the `--parallel` parameter in {term}`q2cli`, though whether those actually induce parallel computing is up to the implementation of the `Pipeline`.
 Actions using this formal parallel computing support can make use of high-performance computing hardware that doesn't necessarily have shared memory.
 
 ## Informal parallel support

@@ -33,6 +33,11 @@ plugin
   As of this writing, a collection of plugins that are installed together are referred to as a distribution.
   Additional plugins can be installed, and the primary resource enabling discovery of additional plugins is the [QIIME 2 Library](https://library.qiime2.org).
 
+Python 3 API
+  QIIME 2's Application Programmer Interface.
+  This allows advanced users to access all QIIME 2 analytic functionality directly in Python.
+  This can be very convenient for developing tools that use QIIME 2 as a component, or for performing data analysis without writing intermediary data artifacts to disk unless you specifically want to.
+
 q2cli
   [q2cli](https://github.com/qiime2/q2cli) is the original (and still primary, as of March 2024) command line interface for QIIME 2.
 

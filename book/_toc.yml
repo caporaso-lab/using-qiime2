@@ -3,14 +3,13 @@ root: intro
 parts:
  - caption: Tutorials
    chapters:
-     - file: tutorials/intro
+     - file: tutorials/parallel-pipeline
  - caption: How-tos
    chapters:
      - file: how-to-guides/merge-metadata
      - file: how-to-guides/validate-metadata
      - file: how-to-guides/artifacts-as-metadata
      - file: how-to-guides/view-visualizations
-     - file: how-to-guides/parallel-configuration
      - file: how-to-guides/pipeline-resumption
  - caption: Explanations
    chapters:
@@ -19,6 +18,7 @@ parts:
  - caption: References
    chapters:
      - file: references/metadata
+     - file: references/parallel-configuration
  - caption: Back matter
    chapters:
      - file: back-matter/glossary
