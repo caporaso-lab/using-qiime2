@@ -57,7 +57,56 @@ If you're using a system with parallel computing capabilities (e.g., at least si
 
 ## Python 3 API
 
-Lorem ipsum yada yada yada...
+Parallel Pipeline execution through the Python API is done using a `parsl.Config` object as a context manager.
+These objects take a `parsl.Config` object and an optional dictionary mapping action names to executor names as input.
+If no config is provided your default configuration will be used (see [](qiime2-configuration-precedence)).
+
+```python
+from qiime2.sdk.parallel_config import ParallelConfig
+from qiime2.plugins.dwq2.pipelines import search_and_summarize
+from qiime2 import Artifact, Metadata
+
+query_seqs = Artifact.load('query-seqs.qza')
+reference_seqs = Artifact.load('query-seqs.qza')
+reference_metadata = Artifact.load('reference-metadata.qza').view(Metadata)
+
+with ParallelConfig():
+    future = search_and_summarize.parallel(query_seqs=query_seqs,
+                                           reference_seqs=reference_seqs,
+                                           reference_metadata=reference_metadata,
+                                           split_size=1)
+    # call future._result() inside of the context manager
+    result = future._result()
+```
+
+To use a specific configuration, you can create it directly, or load one from file.
+For example:
+
+```python
+from qiime2.sdk.parallel_config import ParallelConfig, get_config_from_file
+from qiime2.plugins.dwq2.pipelines import search_and_summarize
+from qiime2 import Artifact, Metadata
+
+query_seqs = Artifact.load('query-seqs.qza')
+reference_seqs = Artifact.load('query-seqs.qza')
+reference_metadata = Artifact.load('reference-metadata.qza').view(Metadata)
+
+path_to_config_file = # set this to the path to the file you'd like to load
+
+c, m = get_config_from_file(path_to_config_file)
+
+with ParallelConfig(parallel_config=c, action_executor_mapping=m):
+    future = search_and_summarize.parallel(query_seqs=query_seqs,
+                                           reference_seqs=reference_seqs,
+                                           reference_metadata=reference_metadata,
+                                           split_size=1)
+    # call future._result() inside of the context manager
+    result = future._result()
+```
+
+## Parsl configuration
+
+To learn how to configure parsl for your own usage, refer to [](parallel-configuration).
 
 [^formal-informal-parallel]: QIIME 2 {term}`Actions <Action>` can provide formal (i.e., Parsl-based) or informal (e.g., multi-threaded execution of a third party program) parallel computing support.
  To learn more about the distinction, see [](types-of-parallel-support).
