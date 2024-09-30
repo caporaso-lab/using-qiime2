@@ -46,7 +46,7 @@ On my Apple MacBook Pro (M3) it ran for approximately 6 minutes.
 qiime dwq2 search-and-summarize \
     --i-query-seqs query-seqs.qza \
     --i-reference-seqs reference-seqs.qza \
-    --m-reference-metadata-file reference-metadata.txt \
+    --m-reference-metadata-file reference-metadata.tsv \
     --p-split-size 1 \
     --o-hits serial-hits.qza \
     --o-hits-table serial-hits-table.qzv
@@ -60,7 +60,7 @@ Note that the output filenames this time are adapted to **prepend `parallel-` to
 qiime dwq2 search-and-summarize \
     --i-query-seqs query-seqs.qza \
     --i-reference-seqs reference-seqs.qza \
-    --m-reference-metadata-file reference-metadata.txt \
+    --m-reference-metadata-file reference-metadata.tsv \
     --p-split-size 1 \
     --o-hits parallel-hits.qza \
     --o-hits-table parallel-hits-table.qzv \
@@ -82,7 +82,7 @@ from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
 reference_seqs = Artifact.load('query-seqs.qza')
-reference_metadata = Metadata.load('reference-metadata.txt')
+reference_metadata = Metadata.load('reference-metadata.tsv')
 
 with ParallelConfig():
     future = search_and_summarize.parallel(query_seqs=query_seqs,
@@ -103,7 +103,7 @@ from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
 reference_seqs = Artifact.load('query-seqs.qza')
-reference_metadata = Metadata.load('reference-metadata.txt')
+reference_metadata = Metadata.load('reference-metadata.tsv')
 
 path_to_config_file = # set this to the path to the file you'd like to load
 
