@@ -9,6 +9,7 @@ Here we illustrate how to run `Pipelines` in parallel using {term}`q2cli` and {t
 
 ```{note}
 These examples assume that you have a QIIME 2 deployment that includes the [q2-dwq2](https://github.com/caporaso-lab/q2-dwq2) educational plugin.
+Follow the instructions in [](tutorial-setup) if you'd like to follow along with this tutorial.
 ```
 
 ## q2cli
@@ -23,30 +24,43 @@ qiime dwq2 search-and-summarize --help
 Have QIIME 2 generate example data that can be used to run the usage example.
 
 ```shell
-qiime dwq2 search-and-summarize --example-data
+qiime dwq2 search-and-summarize --example-data ss-usage
+```
+
+This will create a new directory for `search-and-summarize` usage example data.
+Change into that new directory by running:
+
+```shell
+cd ss-usage/Serial
 ```
 
 Run the usage example serially first.
-Note that in the following commands the output filenames are adapted from the usage example to prepend `serial-` to each file name.
+Note that in the following commands the output filenames are adapted from the usage example to **prepend `serial-` to each file name**.
+
+```{note}
+The following command may take several minutes to run.
+On my Apple MacBook Pro (M3) it ran for approximately 6 minutes.
+```
 
 ```shell
 qiime dwq2 search-and-summarize \
     --i-query-seqs query-seqs.qza \
     --i-reference-seqs reference-seqs.qza \
-    --m-reference-metadata-file reference-metadata.qza \
+    --m-reference-metadata-file reference-metadata.txt \
     --p-split-size 1 \
     --o-hits serial-hits.qza \
     --o-hits-table serial-hits-table.qzv
 ```
 
-To run this `Pipeline` in parallel, append the `--parallel` flag, which will run this command in parallel using a default parallel configuration.
-Note that the output filenames this time are adapted to prepend `parallel-` to each file name.
+To re-run this `Pipeline` in parallel, append the `--parallel` flag.
+This will run this command in parallel using a default parallel configuration (learn more about this in [](parallel-configuration)).
+Note that the output filenames this time are adapted to **prepend `parallel-` to each file name**.
 
 ```shell
 qiime dwq2 search-and-summarize \
     --i-query-seqs query-seqs.qza \
     --i-reference-seqs reference-seqs.qza \
-    --m-reference-metadata-file reference-metadata.qza \
+    --m-reference-metadata-file reference-metadata.txt \
     --p-split-size 1 \
     --o-hits parallel-hits.qza \
     --o-hits-table parallel-hits-table.qzv \
@@ -68,7 +82,7 @@ from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
 reference_seqs = Artifact.load('query-seqs.qza')
-reference_metadata = Artifact.load('reference-metadata.qza').view(Metadata)
+reference_metadata = Metadata.load('reference-metadata.txt')
 
 with ParallelConfig():
     future = search_and_summarize.parallel(query_seqs=query_seqs,
@@ -89,7 +103,7 @@ from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
 reference_seqs = Artifact.load('query-seqs.qza')
-reference_metadata = Artifact.load('reference-metadata.qza').view(Metadata)
+reference_metadata = Metadata.load('reference-metadata.txt')
 
 path_to_config_file = # set this to the path to the file you'd like to load
 

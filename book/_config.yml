@@ -54,3 +54,4 @@ html:
 parse:
   myst_substitutions:
     miniconda_url: "[Miniconda](https://conda.io/miniconda.html)"
+    release_epoch: "2024.5"

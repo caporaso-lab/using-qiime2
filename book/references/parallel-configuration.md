@@ -107,7 +107,7 @@ Parsl's `ThreadPoolExecutor` runs on a single node, so we provide a second execu
 ```
 [[parsl.executors]]
 class = "HighThroughputExecutor"
-label = "htex"
+label = "default"
 max_workers = 7
 
 [parsl.executors.provider]
@@ -127,7 +127,13 @@ This can be specified as follows:
 
 ```
 [parsl.executor_mapping]
-some_action = "htex"
+action_name = "tpool"
+```
+
+```{warning}
+The mechanism for specifying action names at present does not handle the case of different plugins defining actions with the same name.
+This mechanism will likely change soon, and may be a {term}`breaking change`.
+You can track progress on this [here](https://github.com/qiime2/qiime2/issues/802).
 ```
 
 (view-parsl-configuration)=

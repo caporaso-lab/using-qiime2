@@ -12,6 +12,12 @@ artifact
   When written to file, artifacts typically have the extension {term}`qza`.
   Artifacts can be provided as input to QIIME 2 {term}`actions <action>` or exported from QIIME 2 for use with other software.
 
+breaking change
+  A *breaking change* is a change to how a program works (for example, a QIIME 2 plugin or interface) that introduces an incompatibility with earlier versions of the program.
+  This will generally require that users make some modification to how they were using some aspect of a system.
+  For example, if a plugin method added a new required input in version 2, that would be a breaking change with respect to version 1: calling the method without that new parameter would fail in version 2, but would have succeeded with version 1.
+  This may also be called a backward incompatible change or an API change.
+
 DRY
   An acronym of *Don't Repeat Yourself*, and a critical principle of software engineering and equally applicable in research data management.
   For more information on DRY and software engineering in general, see {cite:t}`pragprog20`.

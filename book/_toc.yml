@@ -3,6 +3,7 @@ root: intro
 parts:
  - caption: Tutorials
    chapters:
+     - file: tutorials/intro
      - file: tutorials/parallel-pipeline
  - caption: How-tos
    chapters:
