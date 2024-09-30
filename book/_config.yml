@@ -55,3 +55,15 @@ parse:
   myst_substitutions:
     miniconda_url: "[Miniconda](https://conda.io/miniconda.html)"
     release_epoch: "2024.5"
+    tutorial_environment_block: |
+      ````{admonition} Reminder
+      :class: tip
+
+      These examples assume that you have a QIIME 2 deployment that includes the [q2-dwq2](https://github.com/caporaso-lab/q2-dwq2) educational plugin.
+      Follow the instructions in [](tutorial-setup) if you'd like to follow along with this tutorial.
+      If you've already followed those instructions, before following this tutorial be sure to activate your conda environment as follows:
+
+      ```python
+      conda activate using-qiime2
+      ```
+      ````

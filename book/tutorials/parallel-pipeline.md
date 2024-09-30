@@ -7,10 +7,7 @@ This allows for faster execution of QIIME 2 `Pipelines`, assuming the compute re
 Parallel Pipeline execution is accessible in different ways depending on which interface you're using.
 Here we illustrate how to run `Pipelines` in parallel using {term}`q2cli` and {term}`QIIME 2's Python 3 API <Python 3 API>`.
 
-```{note}
-These examples assume that you have a QIIME 2 deployment that includes the [q2-dwq2](https://github.com/caporaso-lab/q2-dwq2) educational plugin.
-Follow the instructions in [](tutorial-setup) if you'd like to follow along with this tutorial.
-```
+{{ tutorial_environment_block }}
 
 ## q2cli
 
