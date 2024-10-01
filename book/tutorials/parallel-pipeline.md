@@ -78,7 +78,7 @@ from qiime2.plugins.dwq2.pipelines import search_and_summarize
 from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
-reference_seqs = Artifact.load('query-seqs.qza')
+reference_seqs = Artifact.load('reference-seqs.qza')
 reference_metadata = Metadata.load('reference-metadata.tsv')
 
 with ParallelConfig():
@@ -99,7 +99,7 @@ from qiime2.plugins.dwq2.pipelines import search_and_summarize
 from qiime2 import Artifact, Metadata
 
 query_seqs = Artifact.load('query-seqs.qza')
-reference_seqs = Artifact.load('query-seqs.qza')
+reference_seqs = Artifact.load('reference-seqs.qza')
 reference_metadata = Metadata.load('reference-metadata.tsv')
 
 path_to_config_file = # set this to the path to the file you'd like to load
