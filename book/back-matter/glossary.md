@@ -12,6 +12,12 @@ artifact
   When written to file, artifacts typically have the extension {term}`qza`.
   Artifacts can be provided as input to QIIME 2 {term}`actions <action>` or exported from QIIME 2 for use with other software.
 
+breaking change
+  A *breaking change* is a change to how a program works (for example, a QIIME 2 plugin or interface) that introduces an incompatibility with earlier versions of the program.
+  This will generally require that users make some modification to how they were using some aspect of a system.
+  For example, if a plugin method added a new required input in version 2, that would be a breaking change with respect to version 1: calling the method without that new parameter would fail in version 2, but would have succeeded with version 1.
+  This may also be called a backward incompatible change or an API change.
+
 DRY
   An acronym of *Don't Repeat Yourself*, and a critical principle of software engineering and equally applicable in research data management.
   For more information on DRY and software engineering in general, see {cite:t}`pragprog20`.
@@ -32,6 +38,11 @@ plugin
   Plugins can be developed and distributed by anyone.
   As of this writing, a collection of plugins that are installed together are referred to as a distribution.
   Additional plugins can be installed, and the primary resource enabling discovery of additional plugins is the [QIIME 2 Library](https://library.qiime2.org).
+
+Python 3 API
+  QIIME 2's Application Programmer Interface.
+  This allows advanced users to access all QIIME 2 analytic functionality directly in Python.
+  This can be very convenient for developing tools that use QIIME 2 as a component, or for performing data analysis without writing intermediary data artifacts to disk unless you specifically want to.
 
 q2cli
   [q2cli](https://github.com/qiime2/q2cli) is the original (and still primary, as of March 2024) command line interface for QIIME 2.

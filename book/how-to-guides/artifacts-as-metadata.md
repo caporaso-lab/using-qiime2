@@ -1,5 +1,5 @@
 (view-artifacts-as-metadata)=
-# How to use QIIME 2 Artifacts as Metadata
+# How to use Artifacts as Metadata
 
 In addition to TSV metadata files, QIIME 2 also supports viewing some kinds of artifacts as metadata.
 An example of this is artifacts of type `SampleData[AlphaDiversity]`.
