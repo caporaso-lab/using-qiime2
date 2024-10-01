@@ -87,8 +87,6 @@ strategy = "None"
 is a top-level Parsl configuration parameter that you can [read more about in the Parsl documentation](https://parsl.readthedocs.io/en/stable/userguide/configuring.html#multi-threaded-applications).
 This may need to be set differently depending on your system.
 
-If you were to load this into Python using tomlkit you would get the following dictionary:
-
 Next, the first executor is added.
 
 ```
@@ -160,6 +158,8 @@ This implies that after your first time running QIIME 2 in parallel without a co
 
 Alternatively, when using {term}`q2cli`, you can provide a specific configuration for use in configuring parsl using the `--parallel-config` option.
 If provided, this overrides the priority order above.
+
+Similarly, when using the {term}`Python 3 API`, you can provide a specific configuration by passing a `parsl.Config` object into your `ParallelConfig` context manager.
 
 ````{admonition} user_config_dir and site_config_dir
 :class: note

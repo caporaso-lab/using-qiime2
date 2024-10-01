@@ -68,7 +68,7 @@ If you're using a system with parallel computing capabilities (e.g., at least si
 
 ## Python 3 API
 
-Parallel Pipeline execution through the Python API is done using a `parsl.Config` object as a context manager.
+Parallel Pipeline execution through the Python API is done using a `ParallelConfig` object as a context manager.
 These objects take a `parsl.Config` object and an optional dictionary mapping action names to executor names as input.
 If no config is provided your default configuration will be used (see [](qiime2-configuration-precedence)).
 
