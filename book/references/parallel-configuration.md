@@ -87,8 +87,6 @@ strategy = "None"
 is a top-level Parsl configuration parameter that you can [read more about in the Parsl documentation](https://parsl.readthedocs.io/en/stable/userguide/configuring.html#multi-threaded-applications).
 This may need to be set differently depending on your system.
 
-If you were to load this into Python using tomlkit you would get the following dictionary:
-
 Next, the first executor is added.
 
 ```
