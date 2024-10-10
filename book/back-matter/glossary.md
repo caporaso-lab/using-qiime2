@@ -18,10 +18,29 @@ breaking change
   For example, if a plugin method added a new required input in version 2, that would be a breaking change with respect to version 1: calling the method without that new parameter would fail in version 2, but would have succeeded with version 1.
   This may also be called a backward incompatible change or an API change.
 
+Conda metapackage
+  A metapackage is a package with no files, only metadata.
+  They are typically used to collect several packages together into a single package via dependencies.
+  ([source](https://docs.conda.io/projects/conda-build/en/stable/resources/commands/conda-metapackage.html))
+
+Deployment
+  An installation of QIIME 2 as well as zero-or-more {term}`interfaces <Interface>` and {term}`plugins <Plugin>`.
+  The collection of interfaces and plugins in a deployment can be defined by a {term}`distribution` of QIIME 2.
+
+Distribution
+  A collection of QIIME 2 plugins that are installed together through a single {term}`conda metapackage`.
+  These are generally grouped by a theme. For example, the *amplicon distribution* provides a collection of plugins for analysis of microbiome amplicon data, while the *metagenome distribution* provides a collection of plugins for analysis of microbiome shotgun metagenomics data.
+  When a distribution is installed, that particular installation of QIIME 2 is an example of a {term}`deployment`.
+
 DRY
   An acronym of *Don't Repeat Yourself*, and a critical principle of software engineering and equally applicable in research data management.
   For more information on DRY and software engineering in general, see {cite:t}`pragprog20`.
   The {cite:t}`pragprog20` content on DRY is available in a [free example chapter here](https://media.pragprog.com/titles/tpp20/dry.pdf).
+
+Interface
+  The layer of QIIME 2 that users (either humans or other computer software) interact with.
+  {term}`q2cli` and the {term}`Python 3 API` are the two interfaces covered in *Using QIIME 2*.
+  Other interfaces include *Galaxy* (see https://cancer.usegalaxy.org) and Adagio (more info on that soon!).
 
 method
 	A type of QIIME 2 {term}`action` that takes one or more {term}`artifacts <artifact>` or {term}`parameters <parameter>` as input, and produces one or more {term}`artifacts <artifact>` as output.
