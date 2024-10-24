@@ -12,6 +12,7 @@ parts:
      - file: how-to-guides/artifacts-as-metadata
      - file: how-to-guides/view-visualizations
      - file: how-to-guides/pipeline-resumption
+     - file: how-to-guides/use-the-workshop-container
  - caption: Explanations
    chapters:
      - file: explanations/metadata
