@@ -37,6 +37,10 @@ DRY
   For more information on DRY and software engineering in general, see {cite:t}`pragprog20`.
   The {cite:t}`pragprog20` content on DRY is available in a [free example chapter here](https://media.pragprog.com/titles/tpp20/dry.pdf).
 
+epoch
+  An identifier referencing a release cycle of QIIME 2.
+  Epochs identifiers represent dates (e.g., `2024.10` references the release cycle initiated in October of 2024).
+
 Interface
   The layer of QIIME 2 that users (either humans or other computer software) interact with.
   {term}`q2cli` and the {term}`Python 3 API` are the two interfaces covered in *Using QIIME 2*.
