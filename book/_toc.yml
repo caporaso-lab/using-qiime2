@@ -5,6 +5,7 @@ parts:
    chapters:
      - file: tutorials/intro
      - file: tutorials/parallel-pipeline
+     - file: tutorials/use-the-artifact-cache
  - caption: How-tos
    chapters:
      - file: how-to-guides/merge-metadata
@@ -20,6 +21,7 @@ parts:
  - caption: References
    chapters:
      - file: references/metadata
+     - file: references/cache-structure
      - file: references/parallel-configuration
  - caption: Back matter
    chapters:
