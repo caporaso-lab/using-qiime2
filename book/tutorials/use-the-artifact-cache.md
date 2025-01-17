@@ -1,8 +1,6 @@
 (artifact-cache-tutorial)=
 # Using an Artifact Cache
 
-## Background
-
 The artifact cache allows users to have finer control over where and how QIIME 2 {term}`Results <Result>` are stored on disk.
 
 Artifact caches serve two primary purposes:
