@@ -27,28 +27,28 @@ conda update conda
 ## Install the QIIME 2 "Tiny Distribution"
 
 The QIIME 2 "Tiny Distribution" is a minimal set of QIIME 2 functionality for building and using plugins through the QIIME 2 command line or Python 3 API.
-Here's we'll install the most recent release version of QIIME 2, QIIME 2 {{ release_epoch }}.
+Here's we'll install the most recent development version of QIIME 2, QIIME 2 {{ development_epoch }}.
 
-% Unfortunately we can't use MyST substitutions in literals, so including `{{ release_epoch }}` in the following install commands won't work.
+% Unfortunately we can't use MyST substitutions in literals, so including `{{ development_epoch }}` in the following install commands won't work.
 % We need to figure out how we want to address this in the future to automatically update these commands on new releases.
 % Options are having a `latest` URL for release versions, or running a pre-processing script to update these docs before building them.
 
 `````{tab-set}
 ````{tab-item} macOS
 ```bash
-conda env create -n using-qiime2 --file https://data.qiime2.org/distro/tiny/qiime2-tiny-2024.5-py39-osx-conda.yml
+conda env create -n using-qiime2 --file https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-macos-latest-conda.yml
 ```
 ````
 
 ````{tab-item} Linux
 ```bash
-conda env create -n using-qiime2 --file https://data.qiime2.org/distro/tiny/qiime2-tiny-2024.5-py39-linux-conda.yml
+conda env create -n using-qiime2 --file https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-ubuntu-latest-conda.yml
 ```
 ````
 
 ````{tab-item} macOS (Apple Silicon)
 ```bash
-CONDA_SUBDIR=osx-64 conda env create -n using-qiime2 --file https://data.qiime2.org/distro/tiny/qiime2-tiny-2024.5-py39-osx-conda.yml
+CONDA_SUBDIR=osx-64 conda env create -n using-qiime2 --file https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-macos-latest-conda.yml
 conda activate using-qiime2
 conda config --env --set subdir osx-64
 ```
@@ -56,7 +56,7 @@ conda config --env --set subdir osx-64
 
 ````{tab-item} Windows (via WSL)
 ```bash
-conda env create -n using-qiime2 --file https://data.qiime2.org/distro/tiny/qiime2-tiny-2024.5-py39-linux-conda.yml
+conda env create -n using-qiime2 --file https://raw.githubusercontent.com/qiime2/distributions/dev/latest/passed/qiime2-tiny-ubuntu-latest-conda.yml
 ```
 ````
 
@@ -80,19 +80,16 @@ You should see something like the following, though the version numbers you'll s
 
 ```
 System versions
-Python version: 3.9.19
-QIIME 2 release: 2024.5
-QIIME 2 version: 2024.5.1
-q2cli version: 2024.5.0
+Python version: 3.10.14
+QIIME 2 release: 2025.4
+QIIME 2 version: 2025.4.0.dev0+11.g85975ad
+q2cli version: 2025.4.0.dev0+8.g63d82cb
 
 Installed plugins
-types: 2024.5.0
+metadata: 2025.4.0.dev0+5.g7af916f
+types: 2025.4.0.dev0+6.g11e14d8
 
-Application config directory
-/Users/jgc/miniconda3/envs/using-qiime2/var/q2cli
-
-Getting help
-To get help with QIIME 2, visit https://qiime2.org
+...
 ```
 
 At this stage you have a working QIIME 2 environment, but it doesn't do a whole lot.
@@ -113,20 +110,17 @@ If you run `qiime info` again, you should now see a new plugin, `dwq2`, in the l
 
 ```
 System versions
-Python version: 3.9.19
-QIIME 2 release: 2024.5
-QIIME 2 version: 2024.5.1
-q2cli version: 2024.5.0
+Python version: 3.10.14
+QIIME 2 release: 2025.4
+QIIME 2 version: 2025.4.0.dev0+11.g85975ad
+q2cli version: 2025.4.0.dev0+8.g63d82cb
 
 Installed plugins
 dwq2: 0+unknown
-types: 2024.5.0
+metadata: 2025.4.0.dev0+5.g7af916f
+types: 2025.4.0.dev0+6.g11e14d8
 
-Application config directory
-/Users/jgc/miniconda3/envs/using-qiime2/var/q2cli
-
-Getting help
-To get help with QIIME 2, visit https://qiime2.org
+...
 ```
 
 ## Exploring the available functionality
