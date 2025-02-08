@@ -181,3 +181,70 @@ You can get find the directory used on your system by running the following comm
 python -c "import appdirs; print(appdirs.site_config_dir('qiime2'))"
 ```
 ````
+
+### Most relevant parsl config arguments
+
+These are some of the most commonly used arguments used to configure parsl, for more advanced/specific configuration please consult the full parsl config docs [here.](https://parsl.readthedocs.io/en/stable/stubs/parsl.config.Config.html#parsl.config.Config)
+
+#### Config Args
+
+*run_dir:* Parsl outputs are written to the folder specified by the `run-dir` param in the Parsl configuration file. By default, this will be `./runinfo`
+
+### Configuring parsl for slurm
+
+Slurm is a commonly used scheduling system for HPC clusters, and it is the scheduling system the QIIME 2 core dev team is most familiar with. As such, we have configured our own parallel analyses to run on Slurm based systems, and can offer some guidance.
+
+Fortunately, parsl implements a SlurmProvider for use on slurm based systems. In order to use it, your config should look something like the following:
+
+```
+[parsl]
+
+[[parsl.executors]]
+class = "HighThroughputExecutor"
+label = "default"
+max_workers = ...
+
+[parsl.executors.provider]
+class = "SlurmProvider"
+...
+```
+
+class :note:
+It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing on slurm.
+
+#### SlurmProvider Args
+
+*walltime:* The max time for the slurm jobs submitted. Each block represents a parsl job
+
+*min_blocks:* This defaults to 1, and we strongly recommend leaving it as 1
+
+*max_blocks:* The maximum number of blocks (parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm
+
+*nodes_per_block:* How many nodes to request per slurm job submitted.
+
+*mem_per_node:* The amount of memory to request per compute node.
+
+*cores_per_node:* The amount of CPU cores to request per compute node.
+
+#### Example slurm config
+
+```
+[parsl]
+
+[[parsl.executors]]
+class = "HighThroughputExecutor"
+label = "default"
+max_workers = 1
+
+[parsl.executors.provider]
+class = "SlurmProvider"
+mem_per_node = 100
+exclusive = false
+worker_init = "module load anaconda3; conda activate qiime2-shotgun-2024.2;"
+walltime = "10:00:00"
+nodes_per_block = 1
+cores_per_node = 10
+max_blocks = 5
+```
+
+This is an example of a config we have actually used to run analyses on our HPC cluster.
