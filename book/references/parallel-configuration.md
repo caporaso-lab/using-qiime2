@@ -209,22 +209,26 @@ class = "SlurmProvider"
 ...
 ```
 
-class :note:
-It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing on slurm.
+````{admonition} Omit "strategy=None"
+:class: note
+It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing across multiple blocks.
+````
 
 #### SlurmProvider Args
 
-*walltime:* The max time for the slurm jobs submitted. Each block represents a parsl job
+*max_blocks:* The maximum number of blocks (parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm.
 
-*min_blocks:* This defaults to 1, and we strongly recommend leaving it as 1
+*nodes_per_block:* How many compute nodes to request per slurm job submitted.
 
-*max_blocks:* The maximum number of blocks (parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm
-
-*nodes_per_block:* How many nodes to request per slurm job submitted.
+*cores_per_node:* The amount of CPU cores to request per compute node.
 
 *mem_per_node:* The amount of memory to request per compute node.
 
-*cores_per_node:* The amount of CPU cores to request per compute node.
+*walltime:* The max time for the slurm jobs submitted. Each block represents a parsl job.
+
+*exclusive:* Whether to request nodes that are free from other running jobs or not.
+
+*worker_init:* Bash commands to run on the worker jobs submitted by parsl. You will most likely need to activate your QIIME 2 conda environment here.
 
 #### Example slurm config
 
@@ -234,17 +238,83 @@ It is important to omit the "strategy=None" seen in the default config. This set
 [[parsl.executors]]
 class = "HighThroughputExecutor"
 label = "default"
-max_workers = 1
+cores_per_worker = 20
+max_workers_per_node = 1
 
 [parsl.executors.provider]
 class = "SlurmProvider"
-mem_per_node = 100
-exclusive = false
-worker_init = "module load anaconda3; conda activate qiime2-shotgun-2024.2;"
-walltime = "10:00:00"
+max_blocks = 10
 nodes_per_block = 1
-cores_per_node = 10
-max_blocks = 5
+cores_per_node = 20
+mem_per_node = 100
+walltime = "10:00:00"
+exclusive = false
+worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 ```
 
-This is an example of a config we have actually used to run analyses on our HPC cluster.
+This is an example of a config we have actually used to run analyses on our HPC cluster. Let's break down what these parameters mean.
+
+*max_blocks = 10:* We will run up to 5 slurm jobs.
+
+*nodes_per_block = 1:* Each job will use one compute node.
+
+*cores_per_node = 20:* 20 cores will be used per compute node.
+
+*mem_per_node = 100:* 100GB of RAM will be used per compute node.
+
+*walltime = "10:00:00":* Each slurm job (block) will run for up to 10 hours.
+
+*exclusive = false:* We don't care if there are other jobs running on the nodes we use.
+
+*worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;":* Activate the necessary QIIME 2 conda environment for each worker job.
+
+And finally, let's take a look at those parameters given to the HighThroughputExecutor.
+
+*cores_per_worker = 20:* Each worker will have access to 20 cores. This was set to match `cores_per_node / max_workers_per_node` just to ensure all our resources are set to be available.
+
+*max_workers_per_node = 1:* Each compute node will only have one worker and only be able to handle one job at a time.
+
+This config will queue 10 slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node. Due to the `max_workers_per_node = 1`, each of these slurm jobs with these resources will be able to handle 1 QIIME 2 action at a time.
+
+This is the slurm job we submitted that used the above config. We call this job we actually submit directly the "pilot job." This job will itself submit the worker jobs that actually do the work,
+
+```bash
+#!/bin/bash
+
+#SBATCH -e /scratch/<uname>/kraken2/kraken2.err
+#SBATCH -o /scratch/<uname>/kraken2/kraken2.out
+#SBATCH --job-name=kraken2
+#SBATCH --time=24:00:00
+#SBATCH --mem=8G
+
+module load anaconda3
+conda activate q2-shotgun-dev
+
+export TMPDIR=/scratch/<uname>/tmp
+export CACHE=/scratch/<uname>/cache
+
+qiime moshpit classify-kraken2 \
+        --i-seqs "$CACHE:mp-demux" \
+        --i-kraken2-db "$CACHE:workshop-kraken-db" \
+        --p-threads 20 \
+        --p-partitions 10 \
+        --p-memory-mapping false \
+        --o-hits "$CACHE:kraken_hits" \
+        --o-reports "$CACHE:kraken_reports" \
+        --parallel-config /scratch/<uname>/kraken2/conf.toml \
+        --use-cache "$CACHE" \
+        --verbose
+```
+
+`classify-kraken2` is a pipeline that was written specifically to take advantage of QIIME 2's parallel capabilities. It requires a significant amount of compute resources to match a large number of sequences against a very large kraken database hence the large amount of RAM requested in the parsl config, and the need to run in parallel in the first place.
+
+It will split the input sequences into `--p-num-partitions` (defaults to splitting each sample into its own partition) sets and then classify them in parallel. The 10 partitions here corresponds to our 10 blocks. We will have 10 different sets of sequences each of which can be submitted to its own block. The 20 threads here corresponds to our 20 cores_per_worker. This allows us to classify `num_blocks * workers_per_block * cores_per_worker` or `10 * 1 * 20 = 200` sequences at a time!
+
+We make sure to set our TMPDIR and the [Artifact Cache](artifact-cache-tutorial) we are using for this action to a location that is accessible globally on the HPC we are using. It is important that you do this to make sure your actions which will be spread across compute nodes are wrtiting information that needs to be shared amongst them to a location they can all see.
+
+This job has a walltime of 24 hours which is significantly longer than the jobs we will be submitting. This is because it can take some time after your pilot job starts running for your worker jobs to actually start running. This job also only asks for 8GB of RAM. This is because this job doesn't do any of the actual computation, so it doesn't require a large amount of compute resources.
+
+````{admonition} We understand this can be difficult!
+:class: note
+We understand that figuring out how to set up your parallel config for a given action can be difficult. It requires you to understand not only your data and the action you are trying to run but also your compute system. If you need help with this do not hesitate to post on [the QIIME 2 forum](https://forum.qiime2.org).
+````
