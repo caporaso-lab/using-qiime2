@@ -128,14 +128,12 @@ If an action is unmapped, it will run on the default executor.
 This can be specified as follows:
 
 ```
-[parsl.executor_mapping]
+[parsl.executor_mapping.plugin_name]
 action_name = "tpool"
-```
+other_action_name = "tpool"
 
-```{warning}
-The mechanism for specifying action names at present does not handle the case of different plugins defining actions with the same name.
-This mechanism will likely change soon, and may be a {term}`breaking change`.
-You can track progress on this [here](https://github.com/qiime2/qiime2/issues/802).
+[parsl.executor_mapping.other_plugin_name]
+action_name = "tpool"
 ```
 
 (view-parsl-configuration)=
