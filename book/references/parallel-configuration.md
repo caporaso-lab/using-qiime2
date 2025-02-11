@@ -117,6 +117,10 @@ The provider class provides access to computational resources.
 In this case, we use [`parsl.providers.LocalProvider`](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.LocalProvider.html), which provides access to local resources (i.e., on the laptop or workstation).
 [Other providers are available as well](https://parsl.readthedocs.io/en/stable/reference.html#providers), including for Slurm, Amazon Web Services, Kubernetes, and more.
 
+### The run_dir parameter
+
+Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. This indicates the directory that parsl will write logging info to and it defaults to `./runinfo`. This means that if you run a QIIME 2 pipleine in parallel without this parameter set a runinfo directory will be created inside the directory you ran the action in.
+
 ### Mapping {term}`Actions <action>` to executors
 
 An executor mapping can be added to your parsl configuration that defines which actions should run on which executors.
@@ -182,19 +186,11 @@ python -c "import appdirs; print(appdirs.site_config_dir('qiime2'))"
 ```
 ````
 
-### Most relevant parsl config arguments
+### Configuring parsl for HPC
 
-These are some of the most commonly used arguments used to configure parsl, for more advanced/specific configuration please consult the full parsl config docs [here.](https://parsl.readthedocs.io/en/stable/stubs/parsl.config.Config.html#parsl.config.Config)
+Parsl supports a large number of compute environments via its [providers](https://parsl.readthedocs.io/en/stable/reference.html#providers). The HPC clusters used by the QIIME 2 core dev team use [Slurm](https://slurm.schedmd.com/documentation.html). As such, we will give an example here of configuring a QIIME 2 action to run in parallel on a Slurm based HPC cluster using Parsl's SlurmProvider.
 
-#### Config Args
-
-*run_dir:* Parsl outputs are written to the folder specified by the `run-dir` param in the Parsl configuration file. By default, this will be `./runinfo`
-
-### Configuring parsl for slurm
-
-Slurm is a commonly used scheduling system for HPC clusters, and it is the scheduling system the QIIME 2 core dev team is most familiar with. As such, we have configured our own parallel analyses to run on Slurm based systems, and can offer some guidance.
-
-Fortunately, parsl implements a SlurmProvider for use on slurm based systems. In order to use it, your config should look something like the following:
+This is what a QIIME 2 config for running on Slurm looks like at a high level.
 
 ```
 [parsl]
@@ -209,9 +205,11 @@ class = "SlurmProvider"
 ...
 ```
 
+Note we are still using a HighThroughputExecutor but with a different provider. In the default config, we were using the LocalProvider which doesn't take any real configuration to start using. In this case we are using the SlurmProvider which requires a lot more configuration. Let's break down how to configure the SlurmProvider.
+
 ````{admonition} Omit "strategy=None"
 :class: note
-It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing across multiple blocks.
+It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing in an HPC environment.
 ````
 
 #### SlurmProvider Args
@@ -232,6 +230,8 @@ It is important to omit the "strategy=None" seen in the default config. This set
 
 #### Example slurm config
 
+This is an example of a config we have actually used to run analyses on our HPC cluster. Let's break down what these parameters mean.
+
 ```
 [parsl]
 
@@ -251,8 +251,6 @@ walltime = "10:00:00"
 exclusive = false
 worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 ```
-
-This is an example of a config we have actually used to run analyses on our HPC cluster. Let's break down what these parameters mean.
 
 *max_blocks = 10:* We will run up to 5 slurm jobs.
 
@@ -275,6 +273,8 @@ And finally, let's take a look at those parameters given to the HighThroughputEx
 *max_workers_per_node = 1:* Each compute node will only have one worker and only be able to handle one job at a time.
 
 This config will queue 10 slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node. Due to the `max_workers_per_node = 1`, each of these slurm jobs with these resources will be able to handle 1 QIIME 2 action at a time.
+
+### Example slurm job
 
 This is the slurm job we submitted that used the above config. We call this job we actually submit directly the "pilot job." This job will itself submit the worker jobs that actually do the work,
 
