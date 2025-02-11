@@ -44,12 +44,12 @@ This configuration defines two `Executors`.
 2. The [`HighThroughputExecutor`](https://parsl.readthedocs.io/en/stable/stubs/parsl.executors.HighThroughputExecutor.html?highlight=HighThroughputExecutor) that parallelizes jobs across multiple processes.
 
 In this case, the `HighThroughputExecutor` is designated as the default by nature of it's `label` value being `default`.
-Your parsl configuration **must** define an executor with the label `default`, and this is the executor that QIIME 2 will use to dispatch your jobs to if you do not specify an alternative.
+Your Parsl configuration **must** define an executor with the label `default`, and this is the executor that QIIME 2 will use to dispatch your jobs to if you do not specify an alternative.
 
 ````{admonition} The parsl.Config object
 :class: tip
 
-This parsl configuration is ultimately read into a `parsl.Config` object internally in QIIME 2.
+This Parsl configuration is ultimately read into a `parsl.Config` object internally in QIIME 2.
 The `parsl.Config` object that corresponds to the above example would look like the following:
 
 ```python
@@ -72,7 +72,7 @@ config = parsl.Config(
 
 ### Parsl configuration, line-by-line
 
-This first line of [the default configuration file presented above](default-parsl-configuration-file) indicates that this is the parsl section (or [table](https://toml.io/en/v1.0.0#table), to use TOML's terminology) of our configuration file.
+This first line of [the default configuration file presented above](default-parsl-configuration-file) indicates that this is the Parsl section (or [table](https://toml.io/en/v1.0.0#table), to use TOML's terminology) of our configuration file.
 
 ```
 [parsl]
@@ -97,7 +97,7 @@ max_threads = 7
 ```
 
 The double square brackets (`[[ ... ]]`) indicates that [this is an array](https://toml.io/en/v1.0.0#array-of-tables), `executors`, that is nested under the `parsl` table.
-`class` indicates the specific parsl class that is being configured ([`parsl.executors.ThreadPoolExecutor`](https://parsl.readthedocs.io/en/stable/stubs/parsl.executors.ThreadPoolExecutor.html#parsl.executors.ThreadPoolExecutor) in this case); `label` provides a label that you can use to refer to this executor elsewhere; and `max_threads` is a configuration value for the ThreadPoolExecutor class which corresponds to a parameter name for the class's constructor.
+`class` indicates the specific Parsl class that is being configured ([`parsl.executors.ThreadPoolExecutor`](https://parsl.readthedocs.io/en/stable/stubs/parsl.executors.ThreadPoolExecutor.html#parsl.executors.ThreadPoolExecutor) in this case); `label` provides a label that you can use to refer to this executor elsewhere; and `max_threads` is a configuration value for the ThreadPoolExecutor class which corresponds to a parameter name for the class's constructor.
 In this example a value of 7 is specified for `max_threads`, but as noted above this will be computed specifically for your machine when this file is created.
 
 Parsl's `ThreadPoolExecutor` runs on a single node, so we provide a second executor which can utilize up to 2000 nodes.
@@ -119,11 +119,11 @@ In this case, we use [`parsl.providers.LocalProvider`](https://parsl.readthedocs
 
 ### The run_dir parameter
 
-Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. This indicates the directory that parsl will write logging info to and it defaults to `./runinfo`. This means that if you run a QIIME 2 pipleine in parallel without this parameter set a runinfo directory will be created inside the directory you ran the action in.
+Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. This indicates the directory that Parsl will write logging info to and it defaults to `./runinfo`. This means that if you run a QIIME 2 pipleine in parallel without this parameter set a runinfo directory will be created inside the directory you ran the action in.
 
 ### Mapping {term}`Actions <action>` to executors
 
-An executor mapping can be added to your parsl configuration that defines which actions should run on which executors.
+An executor mapping can be added to your Parsl configuration that defines which actions should run on which executors.
 If an action is unmapped, it will run on the default executor.
 This can be specified as follows:
 
@@ -160,7 +160,7 @@ When QIIME 2 needs configuration information, the following precedence order is 
 If no configuration is found after checking those four locations, QIIME 2 writes a default configuration file to `$CONDA_PREFIX/etc/qiime2_config.toml` and uses that.
 This implies that after your first time running QIIME 2 in parallel without a config in at least one of the first 3 locations, the path referenced in step 4 will exist and contain a configuration file.
 
-Alternatively, when using {term}`q2cli`, you can provide a specific configuration for use in configuring parsl using the `--parallel-config` option.
+Alternatively, when using {term}`q2cli`, you can provide a specific configuration for use in configuring Parsl using the `--parallel-config` option.
 If provided, this overrides the priority order above.
 
 Similarly, when using the {term}`Python 3 API`, you can provide a specific configuration by passing a `parsl.Config` object into your `ParallelConfig` context manager.
@@ -186,7 +186,7 @@ python -c "import appdirs; print(appdirs.site_config_dir('qiime2'))"
 ```
 ````
 
-### Configuring parsl for HPC
+### Configuring Parsl for HPC
 
 Parsl supports a large number of compute environments via its [providers](https://parsl.readthedocs.io/en/stable/reference.html#providers). The HPC clusters used by the QIIME 2 core dev team use [Slurm](https://slurm.schedmd.com/documentation.html). As such, we will give an example here of configuring a QIIME 2 action to run in parallel on a Slurm based HPC cluster using Parsl's SlurmProvider.
 
@@ -209,12 +209,12 @@ Note we are still using a HighThroughputExecutor but with a different provider. 
 
 ````{admonition} Omit "strategy=None"
 :class: note
-It is important to omit the "strategy=None" seen in the default config. This setting will prevent parsl from properly parallelizing in an HPC environment.
+It is important to omit the "strategy=None" seen in the default config. This setting will prevent Parsl from properly parallelizing in an HPC environment.
 ````
 
 #### SlurmProvider Args
 
-*max_blocks:* The maximum number of blocks (parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm.
+*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm.
 
 *nodes_per_block:* How many compute nodes to request per slurm job submitted.
 
@@ -222,11 +222,11 @@ It is important to omit the "strategy=None" seen in the default config. This set
 
 *mem_per_node:* The amount of memory to request per compute node.
 
-*walltime:* The max time for the slurm jobs submitted. Each block represents a parsl job.
+*walltime:* The max time for the slurm jobs submitted. Each block represents a Parsl job.
 
 *exclusive:* Whether to request nodes that are free from other running jobs or not.
 
-*worker_init:* Bash commands to run on the worker jobs submitted by parsl. You will most likely need to activate your QIIME 2 conda environment here.
+*worker_init:* Bash commands to run on the worker jobs submitted by Parsl. You will most likely need to activate your QIIME 2 conda environment here.
 
 #### Example slurm config
 
@@ -306,7 +306,7 @@ qiime moshpit classify-kraken2 \
         --verbose
 ```
 
-`classify-kraken2` is a pipeline that was written specifically to take advantage of QIIME 2's parallel capabilities. It requires a significant amount of compute resources to match a large number of sequences against a very large kraken database hence the large amount of RAM requested in the parsl config, and the need to run in parallel in the first place.
+`classify-kraken2` is a pipeline that was written specifically to take advantage of QIIME 2's parallel capabilities. It requires a significant amount of compute resources to match a large number of sequences against a very large kraken database hence the large amount of RAM requested in the Parsl config, and the need to run in parallel in the first place.
 
 It will split the input sequences into `--p-num-partitions` (defaults to splitting each sample into its own partition) sets and then classify them in parallel. The 10 partitions here corresponds to our 10 blocks. We will have 10 different sets of sequences each of which can be submitted to its own block. The 20 threads here corresponds to our 20 cores_per_worker. This allows us to classify `num_blocks * workers_per_block * cores_per_worker` or `10 * 1 * 20 = 200` sequences at a time!
 

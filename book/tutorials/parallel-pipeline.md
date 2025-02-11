@@ -117,7 +117,7 @@ with ParallelConfig(parallel_config=c, action_executor_mapping=m):
 
 ## Parsl configuration
 
-To learn how to configure parsl for your own usage, refer to [](parallel-configuration).
+To learn how to configure Parsl for your own usage, refer to [](parallel-configuration).
 
 [^formal-informal-parallel]: QIIME 2 {term}`Actions <Action>` can provide formal (i.e., Parsl-based) or informal (e.g., multi-threaded execution of a third party program) parallel computing support.
  To learn more about the distinction, see [](types-of-parallel-support).
