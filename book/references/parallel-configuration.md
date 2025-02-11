@@ -212,7 +212,9 @@ Note we are still using a HighThroughputExecutor but with a different provider. 
 It is important to omit the "strategy=None" seen in the default config. This setting will prevent Parsl from properly parallelizing in an HPC environment.
 ````
 
-#### SlurmProvider Args
+#### SlurmProvider parameters
+
+The full docs for the Parsl SlurmProvider may be found [here](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html#parsl.providers.SlurmProvider). In our documentation, we will break down the ones we have found most necessary.
 
 *max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm.
 
@@ -252,7 +254,7 @@ exclusive = false
 worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 ```
 
-*max_blocks = 10:* We will run up to 5 slurm jobs.
+*max_blocks = 10:* We will run up to 10 slurm jobs.
 
 *nodes_per_block = 1:* Each job will use one compute node.
 
