@@ -216,21 +216,21 @@ It is important to omit the "strategy=None" seen in the default config. This set
 
 The full docs for the Parsl SlurmProvider may be found [here](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html#parsl.providers.SlurmProvider). In our documentation, we will break down the ones we have found most necessary.
 
-*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by slurm.
+*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* Slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by Slurm.
 
-*nodes_per_block:* How many compute nodes to request per slurm job submitted.
+*nodes_per_block:* How many compute nodes to request per Slurm job submitted.
 
 *cores_per_node:* The amount of CPU cores to request per compute node.
 
 *mem_per_node:* The amount of memory to request per compute node.
 
-*walltime:* The max time for the slurm jobs submitted. Each block represents a Parsl job.
+*walltime:* The max time for the Slurm jobs submitted. Each block represents a Parsl job.
 
 *exclusive:* Whether to request nodes that are free from other running jobs or not.
 
 *worker_init:* Bash commands to run on the worker jobs submitted by Parsl. You will most likely need to activate your QIIME 2 conda environment here.
 
-#### Example slurm config
+#### Example Slurm config
 
 This is an example of a config we have actually used to run analyses on our HPC cluster. Let's break down what these parameters mean.
 
@@ -254,7 +254,7 @@ exclusive = false
 worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 ```
 
-*max_blocks = 10:* We will run up to 10 slurm jobs.
+*max_blocks = 10:* We will run up to 10 Slurm jobs.
 
 *nodes_per_block = 1:* Each job will use one compute node.
 
@@ -262,7 +262,7 @@ worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 
 *mem_per_node = 100:* 100GB of RAM will be used per compute node.
 
-*walltime = "10:00:00":* Each slurm job (block) will run for up to 10 hours.
+*walltime = "10:00:00":* Each Slurm job (block) will run for up to 10 hours.
 
 *exclusive = false:* We don't care if there are other jobs running on the nodes we use.
 
@@ -274,11 +274,11 @@ And finally, let's take a look at those parameters given to the HighThroughputEx
 
 *max_workers_per_node = 1:* Each compute node will only have one worker and only be able to handle one job at a time.
 
-This config will queue 10 slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node. Due to the `max_workers_per_node = 1`, each of these slurm jobs with these resources will be able to handle 1 QIIME 2 action at a time.
+This config will queue 10 Slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node. Due to the `max_workers_per_node = 1`, each of these Slurm jobs with these resources will be able to handle 1 QIIME 2 action at a time.
 
-### Example slurm job
+### Example Slurm job
 
-This is the slurm job we submitted that used the above config. We call this job we actually submit directly the "pilot job." This job will itself submit the worker jobs that actually do the work,
+This is the Slurm job we submitted that used the above config. We call this job we actually submit directly the "pilot job." This job will itself submit the worker jobs that actually do the work,
 
 ```bash
 #!/bin/bash
