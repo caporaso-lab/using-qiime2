@@ -214,17 +214,17 @@ It is important to omit the "strategy=None" seen in the default config. This set
 
 The full docs for the Parsl SlurmProvider may be found [here](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html#parsl.providers.SlurmProvider). In our documentation, we will break down the ones we have found most necessary.
 
-*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* Slurm jobs, but it is not guarantees they will all actually run. When/how they get scheduled is determined by Slurm.
+*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* Slurm jobs, but it is not guaranteed they will all actually run. When/how they get scheduled is determined by Slurm.
 
 *nodes_per_block:* How many compute nodes to request per Slurm job submitted.
 
 *cores_per_node:* The amount of CPU cores to request per compute node.
 
-*mem_per_node:* The amount of memory to request per compute node.
+*mem_per_node:* The amount of memory to request per compute node in gigabytes.
 
-*walltime:* The max time for the Slurm jobs submitted. Each block represents a Parsl job.
+*walltime:* The max time for the Slurm jobs submitted. Each block represents a Parsl job in "HH:MM:SS" format.
 
-*exclusive:* Whether to request nodes that are free from other running jobs or not.
+*exclusive:* Whether to request nodes that are free from other running jobs or not (Slurm will make sure we have access to the resources we asked for regardless of whether there are other jobs on the node).
 
 *worker_init:* Bash commands to run on the worker jobs submitted by Parsl. You will most likely need to activate your QIIME 2 conda environment here.
 
