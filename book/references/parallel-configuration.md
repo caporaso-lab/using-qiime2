@@ -119,7 +119,9 @@ In this case, we use [`parsl.providers.LocalProvider`](https://parsl.readthedocs
 
 ### The run_dir parameter
 
-Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. This indicates the directory that Parsl will write logging info to and it defaults to `./runinfo`. This means that if you run a QIIME 2 pipleine in parallel without this parameter set a runinfo directory will be created inside the directory you ran the action in.
+Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. 
+This indicates the directory that Parsl will write logging info to and it defaults to `./runinfo`. 
+This means that if you run a QIIME 2 Pipeline in parallel without this parameter set, a `runinfo` directory will be created inside the directory that you ran the action from.
 
 ### Mapping {term}`Actions <action>` to executors
 
@@ -186,7 +188,9 @@ python -c "import appdirs; print(appdirs.site_config_dir('qiime2'))"
 
 ### Configuring Parsl for HPC
 
-Parsl supports a large number of compute environments via its [providers](https://parsl.readthedocs.io/en/stable/reference.html#providers). The HPC clusters used by the QIIME 2 core dev team use [Slurm](https://slurm.schedmd.com/documentation.html). As such, we will give an example here of configuring a QIIME 2 action to run in parallel on a Slurm based HPC cluster using Parsl's SlurmProvider.
+Parsl supports a large number of compute environments via its [providers](https://parsl.readthedocs.io/en/stable/reference.html#providers).
+The HPC cluster used by the QIIME 2 Framework development team, for example, uses [Slurm](https://slurm.schedmd.com/documentation.html).
+As such, we will give an example here of configuring a QIIME 2 action to run in parallel on a Slurm based HPC cluster using Parsl's SlurmProvider.
 
 This is what a QIIME 2 config for running on Slurm looks like at a high level.
 
@@ -203,30 +207,39 @@ class = "SlurmProvider"
 ...
 ```
 
-Note we are still using a HighThroughputExecutor but with a different provider. In the default config, we were using the LocalProvider which doesn't take any real configuration to start using. In this case we are using the SlurmProvider which requires a lot more configuration. Let's break down how to configure the SlurmProvider.
+Note we are still using a HighThroughputExecutor but with a different provider. 
+In the default config, we were using the LocalProvider which doesn't take any real configuration to start using.
+In this case we are using the SlurmProvider which requires a lot more configuration.
+Let's break down how to configure the SlurmProvider.
 
 ````{admonition} Omit "strategy=None"
 :class: note
-It is important to omit the "strategy=None" seen in the default config. This setting will prevent Parsl from properly parallelizing in an HPC environment.
+It is important to omit the "strategy=None" seen in the default config.
+This setting will prevent Parsl from properly parallelizing in an HPC environment.
 ````
 
 #### SlurmProvider parameters
 
-The full docs for the Parsl SlurmProvider may be found [here](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html#parsl.providers.SlurmProvider). In our documentation, we will break down the ones we have found most necessary.
+The full docs for the Parsl SlurmProvider may be found [here](https://parsl.readthedocs.io/en/stable/stubs/parsl.providers.SlurmProvider.html#parsl.providers.SlurmProvider).
+In our documentation, we will break down the ones we have found most necessary.
 
-*max_blocks:* The maximum number of blocks (Parsl jobs) to maintain. Parsl will submit *max_blocks* Slurm jobs, but it is not guaranteed they will all actually run. When/how they get scheduled is determined by Slurm.
+`max_blocks`: The maximum number of blocks (Parsl jobs) to maintain.
+ Parsl will submit *max_blocks* Slurm jobs, but it is not guaranteed they will all actually run. 
+ When and how they get scheduled is determined by Slurm.
 
-*nodes_per_block:* How many compute nodes to request per Slurm job submitted.
+`nodes_per_block`: How many compute nodes to request per Slurm job submitted.
 
-*cores_per_node:* The amount of CPU cores to request per compute node.
+`cores_per_node:` The number of CPU cores to request per compute node.
 
-*mem_per_node:* The amount of memory to request per compute node in gigabytes.
+`mem_per_node`: The amount of memory to request per compute node in gigabytes.
 
-*walltime:* The max time for the Slurm jobs submitted. Each block represents a Parsl job in "HH:MM:SS" format.
+`walltime`: The max time for the Slurm jobs submitted.
+ Each block represents a Parsl job in "HH:MM:SS" format.
 
-*exclusive:* Whether to request nodes that are free from other running jobs or not (Slurm will make sure we have access to the resources we asked for regardless of whether there are other jobs on the node).
+`exclusive`: Whether to request nodes that are free from other running jobs or not (Slurm will make sure we have access to the resources we asked for regardless of whether there are other jobs on the node).
 
-*worker_init:* Bash commands to run on the worker jobs submitted by Parsl. You will most likely need to activate your QIIME 2 conda environment here.
+`worker_init`: Bash commands to run on the worker jobs submitted by Parsl.
+ You may need to activate your QIIME 2 conda environment here.
 
 #### Example Slurm config
 
@@ -252,31 +265,35 @@ exclusive = false
 worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"
 ```
 
-*max_blocks = 10:* We will run up to 10 Slurm jobs.
+`max_blocks = 10`: We will run up to 10 Slurm jobs.
 
-*nodes_per_block = 1:* Each job will use one compute node.
+`nodes_per_block = 1`: Each job will use one compute node.
 
-*cores_per_node = 20:* 20 cores will be used per compute node.
+`cores_per_node = 20`: 20 cores will be used per compute node.
 
-*mem_per_node = 100:* 100GB of RAM will be used per compute node.
+`mem_per_node = 100`: 100GB of RAM will be used per compute node.
 
-*walltime = "10:00:00":* Each Slurm job (block) will run for up to 10 hours.
+`walltime = "10:00:00"`: Each Slurm job (block) will run for up to 10 hours.
 
-*exclusive = false:* We don't care if there are other jobs running on the nodes we use.
+`exclusive = false`: We don't care if there are other jobs running on the nodes we use.
 
-*worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;":* Activate the necessary QIIME 2 conda environment for each worker job.
+`worker_init = "module load anaconda3; conda activate qiime2-shotgun-dev;"`: Activate the necessary QIIME 2 conda environment for each worker job.
 
 And finally, let's take a look at those parameters given to the HighThroughputExecutor.
 
-*cores_per_worker = 20:* Each worker will have access to 20 cores. This was set to match `cores_per_node / max_workers_per_node` just to ensure all our resources are set to be available.
+`cores_per_worker = 20`: Each worker will have access to 20 cores.
+ This was set to match `cores_per_node / max_workers_per_node`, just to ensure all our resources are set to be available.
 
-*max_workers_per_node = 1:* Each compute node will only have one worker and only be able to handle one job at a time.
+`max_workers_per_node = 1`: Each compute node will only have one worker and only be able to handle one job at a time.
 
-This config will queue 10 Slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node. Due to the `max_workers_per_node = 1`, each of these Slurm jobs with these resources will be able to handle 1 QIIME 2 action at a time.
+This config will queue 10 Slurm jobs that will run for up to 10 hours each. Each job will use 20 cores and 100GB of RAM on one compute node.
+Due to the `max_workers_per_node = 1`, each of these Slurm jobs with these resources will be able to handle one QIIME 2 action at a time.
 
 ### Example Slurm job
 
-This is the Slurm job we submitted that used the above config. We call this job we actually submit directly the "pilot job." This job will itself submit the worker jobs that actually do the work,
+This is the Slurm job we submitted that used the above config.
+We call this job that we actually submit directly the "pilot job."
+This job will itself submit the "worker jobs," which are the ones that will actually do the work,
 
 ```bash
 #!/bin/bash
@@ -306,15 +323,26 @@ qiime moshpit classify-kraken2 \
         --verbose
 ```
 
-`classify-kraken2` is a pipeline that was written specifically to take advantage of QIIME 2's parallel capabilities. It requires a significant amount of compute resources to match a large number of sequences against a very large kraken database hence the large amount of RAM requested in the Parsl config, and the need to run in parallel in the first place.
+`classify-kraken2` is a pipeline that was written specifically to take advantage of QIIME 2's parallel capabilities.
+It requires a significant amount of compute resources to match a large number of sequences against a very large kraken database hence the large amount of RAM requested in the Parsl config, and the need to run in parallel in the first place.
 
-It will split the input sequences into `--p-num-partitions` (defaults to splitting each sample into its own partition) sets and then classify them in parallel. The 10 partitions here corresponds to our 10 blocks. We will have 10 different sets of sequences each of which can be submitted to its own block. The 20 threads here corresponds to our 20 cores_per_worker. This allows us to classify `num_blocks * workers_per_block * cores_per_worker` or `10 * 1 * 20 = 200` sequences at a time!
+It will split the input sequences into `--p-num-partitions` (defaults to splitting each sample into its own partition) sets and then classify them in parallel.
+The 10 partitions here corresponds to our 10 blocks.
+We will have 10 different sets of sequences each of which can be submitted to its own block.
+The 20 threads here corresponds to our 20 `cores_per_worker`. 
+This allows us to classify `num_blocks * workers_per_block * cores_per_worker` or `10 * 1 * 20 = 200` sequences at a time.
 
-We make sure to set our TMPDIR and the [Artifact Cache](artifact-cache-tutorial) we are using for this action to a location that is accessible globally on the HPC we are using. It is important that you do this to make sure your actions which will be spread across compute nodes are wrtiting information that needs to be shared amongst them to a location they can all see.
+We make sure to set our `TMPDIR` and the [Artifact Cache](artifact-cache-tutorial) we are using for this action to a location that is accessible globally on the HPC we are using.
+It is important that you do this to make sure your actions which will be spread across compute nodes are writing information that needs to be shared amongst them to a location they can all see.
 
-This job has a walltime of 24 hours which is significantly longer than the jobs we will be submitting. This is because it can take some time after your pilot job starts running for your worker jobs to actually start running. This job also only asks for 8GB of RAM. This is because this job doesn't do any of the actual computation, so it doesn't require a large amount of compute resources.
+This job has a walltime of 24 hours which is significantly longer than the jobs we will be submitting.
+This is because it can take some time after your pilot job starts running for your worker jobs to actually start running.
+This job also only asks for 8GB of RAM.
+This is because this job doesn't do any of the actual computation, so it doesn't require a large amount of compute resources.
 
 ````{admonition} We understand this can be difficult!
 :class: note
-We understand that figuring out how to set up your parallel config for a given action can be difficult. It requires you to understand not only your data and the action you are trying to run but also your compute system. If you need help with this do not hesitate to post on [the QIIME 2 forum](https://forum.qiime2.org).
+We understand that figuring out how to set up your parallel config for a given action can be difficult.
+It requires you to understand not only your data and the action you are trying to run but also your compute system.
+If you need help with this do not hesitate to post on [the QIIME 2 forum](https://forum.qiime2.org).
 ````
