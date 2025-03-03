@@ -14,6 +14,7 @@ parts:
      - file: how-to-guides/view-visualizations
      - file: how-to-guides/pipeline-resumption
      - file: how-to-guides/use-the-workshop-container
+     - file: how-to-guides/get-involved
  - caption: Explanations
    chapters:
      - file: explanations/metadata
