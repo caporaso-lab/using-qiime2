@@ -48,7 +48,7 @@ If you're building your own, you're in charge of when it's ready to go out to us
 
 You can find additional notes about contributing code in the [Contributing Guide](https://github.com/qiime2/.github/blob/main/CONTRIBUTING.md).
 
-## Create documentation, or something else of use to the community
+## Create and share documentation, or something else that can help other users
 
 Documentation created by users makes up some of the most highly accessed content on the QIIME 2 Forum.
 For example, as of this writing, 7 of the 10 most view posts on the Forum are documentation products led by users:
@@ -58,6 +58,8 @@ For example, as of this writing, 7 of the 10 most view posts on the Forum are do
 ```
 
 For examples of the other types of content or tools created as contributions to the QIIME 2 ecosystem, see [Community Contributions](https://forum.qiime2.org/c/community-contributions/15) on the Forum.
+Creating and sharing things that you find useful is a great way to get involved in the community and to connect with others with similar interests.
+Just be sure that what you're sharing is reliable, and be responsive to questions you get.
 
 ```{note}
 We're in the process of updating the QIIME 2 Library to contain a catalog of documentation.
