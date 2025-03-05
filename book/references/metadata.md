@@ -15,6 +15,17 @@ The following sections describe the formatting requirements for QIIME 2 metadata
 There is no universal standard for TSV files.
 It is important to adhere to the requirements described in this document to understand how QIIME 2 will interpret your metadata file's contents.
 
+```{admonition} Warning: Do not include confidential information in your metadata.
+:class: warning
+QIIME 2 goes to great lengths to ensure that your bioinformatics workflow will be reproducible.
+This includes recording information about your analysis inside of your Results' data provenance, and the recorded information includes metadata that you provided to run specific commands.
+For this and other reasons, we strongly recommend that you **never include confidential information, such as Personally Identifying Information (PII), in your QIIME 2 metadata**.
+**Because QIIME 2 stores metadata in your data provenance, confidential information that you use in a QIIME 2 analysis will persist in downstream Results.**
+
+Instead of including confidential information in your metadata, you should encode it with variables that only authorized individuals have access to.
+For example, subject names should be replaced with anonymized subject identifiers before use with QIIME 2.
+```
+
 ```{warning}
 Spreadsheet editors often have auto-correct or auto-format features that will modify your data without alerting you that changes will be made {cite}`Ziemann2016`.
 This is something that you need to watch out for when working with your metadata files in spreadsheet editors.
