@@ -31,7 +31,7 @@ Podman also doesn't require that you have root/admin access on the computer wher
 You can find a perspective on the differences between the two from the developers of Podman [here](https://www.redhat.com/en/topics/containers/what-is-podman#podman-vs-docker).
 ```
 
-(pull-image)=
+(pull-workshop-image)=
 ## Pull the container image
 
 After installing Docker or Podman, we next need to pull (i.e., download) the image that contains our QIIME 2 environment.
@@ -232,12 +232,12 @@ podman container stop qiime2-workshop
 
 If using Docker, once you're done using your container and don't have any other containers running, it's a good idea to quit Docker so it's not using resources unnecessarily.
 
-(build-the-image)=
+(build-the-workshop-image)=
 ## Building the image locally (optional; experts only ♦♦)
 
 **Expert users** may ultimately be interesting in modifying the image used here.
 This can be done with `docker` as follows.
-[Pulling the image](pull-image) will be quicker and easier.
+[Pulling the image](pull-workshop-image) will be quicker and easier.
 
 First, download the Dockerfile for the workshop container.
 ```shell
