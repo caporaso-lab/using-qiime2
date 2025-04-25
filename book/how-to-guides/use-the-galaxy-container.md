@@ -66,12 +66,14 @@ podman container run \
 ````
 `````
 
-This will both pull and start the image. You will want to keep track of the name of the container created and use that name in place of `quay.io/...` for future invocations.
+You will need to replace `<distribution>` and `<epoch>` with the distribution and epoch you are targeting. This will both pull the image and run a container off of it.
 
 (use-container)=
 ## Using the container image
 
 Open a web browser and navigate to localhost:8080. You will get a 502 page while Galaxy is booting. Within a few minutes you should be able to refresh and see the Galaxy page.
+
+Your Galaxy history will be saved in the container, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. This can be done by swapping out `quay.io/qiime2/<distribution>-galaxy:<epoch>` with the name of the image. How to get the name of the image is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool.
 
 (build-the-galaxy-image)=
 ## Building the image locally (optional; experts only ♦♦)
