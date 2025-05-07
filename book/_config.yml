@@ -54,8 +54,8 @@ html:
 parse:
   myst_substitutions:
     miniconda_url: "[Miniconda](https://conda.io/miniconda.html)"
-    release_epoch: "2024.10"
-    development_epoch: "2025.4"
+    release_epoch: "2025.4"
+    development_epoch: "2025.10"
     tutorial_environment_block: |
       ````{admonition} Reminder
       :class: tip
