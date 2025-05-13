@@ -81,13 +81,13 @@ You should see something like the following, though the version numbers you'll s
 ```
 System versions
 Python version: 3.10.14
-QIIME 2 release: 2025.4
-QIIME 2 version: 2025.4.0.dev0+11.g85975ad
-q2cli version: 2025.4.0.dev0+8.g63d82cb
+QIIME 2 release: 2025.7
+QIIME 2 version: 2025.7.0.dev0
+q2cli version: 2025.7.0.dev0
 
 Installed plugins
-metadata: 2025.4.0.dev0+5.g7af916f
-types: 2025.4.0.dev0+6.g11e14d8
+metadata: 2025.7.0.dev0
+types: 2025.7.0.dev0
 
 ...
 ```
@@ -111,14 +111,14 @@ If you run `qiime info` again, you should now see a new plugin, `dwq2`, in the l
 ```
 System versions
 Python version: 3.10.14
-QIIME 2 release: 2025.4
-QIIME 2 version: 2025.4.0.dev0+11.g85975ad
-q2cli version: 2025.4.0.dev0+8.g63d82cb
+QIIME 2 release: 2025.7
+QIIME 2 version: 2025.7.0.dev0
+q2cli version: 2025.7.0.dev0
 
 Installed plugins
 dwq2: 0+unknown
-metadata: 2025.4.0.dev0+5.g7af916f
-types: 2025.4.0.dev0+6.g11e14d8
+metadata: 2025.7.0.dev0
+types: 2025.7.0.dev0
 
 ...
 ```
