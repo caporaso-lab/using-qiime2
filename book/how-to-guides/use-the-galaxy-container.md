@@ -4,8 +4,8 @@
 The QIIME 2 Galaxy container enables you to use QIIME 2 through the Galaxy interface on your own hardware.
 
 We recommend using either [Podman](https://podman.io) or [Docker](https://docker.com).
-Before you jump in with QIIME 2, follow the "Get Started" (i.e., install) instructions for one or the other on the project's website, and confirm that it's working according to the Podman's or Docker's instructions.
-(We don't link to their instructions here so that we don't send you to an outdated link.)
+Before you jump in with QIIME 2, follow the "Get Started" (i.e., install) instructions for one or the other on the project's website, and confirm that it's working according to their instructions.
+(We don't link to their instructions here so that we don't send you to an outdated link).
 
 ```{admonition} Podman versus Docker
 :class: dropdown, question
@@ -36,6 +36,7 @@ docker container run \
 ````{tab-item} Docker on Apple M-series
 ```shell
 docker container run \
+ -d \
  -p 8080:80 \
  -p 8021:21 \
  -p 8020:20 \
@@ -50,13 +51,13 @@ podman container run \
  -p 8080:80 \
  -p 8021:21 \
  -p 8020:20 \
- --platform "linux/amd64" \
  quay.io/qiime2/q2galaxy:<epoch>
 ```
 ````
 ````{tab-item} Podman on Apple M-series
 ```shell
 podman container run \
+ -d \
  -p 8080:80 \
  -p 8021:21 \
  -p 8020:20 \
@@ -69,7 +70,7 @@ podman container run \
 You will need to replace `<epoch>` with the epoch you are targeting. To view available epochs, visit [quay.io/qiime2/q2galaxy](https://quay.io/qiime2/q2galaxy). The first time you run this command it will both pull the image and run a container off of it. Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
 
 ```{admonition} Subsequent runs of the container
-Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. To do this, you will need to get the id of your container. How to do this is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool to get the id of your container. Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
+Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. To do this, you will need to get the id of your container. How to do this is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool for instructions on how get the id of your container. Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
 ```
 
 (use-container)=
