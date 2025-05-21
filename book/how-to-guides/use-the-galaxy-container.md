@@ -1,7 +1,7 @@
 (galaxy-container)=
-# How to use the QIIME 2 galaxy container
+# How to use the QIIME 2 Galaxy container
 
-The QIIME 2 Galaxy docker container enables you to use QIIME 2 through the Galaxy interface on your own hardware.
+The QIIME 2 Galaxy container enables you to use QIIME 2 through the Galaxy interface on your own hardware.
 
 We recommend using either [Podman](https://podman.io) or [Docker](https://docker.com).
 Before you jump in with QIIME 2, follow the "Get Started" (i.e., install) instructions for one or the other on the project's website, and confirm that it's working according to the Podman's or Docker's instructions.
@@ -18,7 +18,7 @@ You can find a perspective on the differences between the two from the developer
 ```
 
 (pull-galaxy-image)=
-## Pulling and starting the container image
+## Pulling the image and starting a container for the first time
 
 After downloading and learning to use your chosen program, run the following command in a terminal:
 
@@ -30,7 +30,7 @@ docker container run \
  -p 8080:80 \
  -p 8021:21 \
  -p 8020:20 \
- quay.io/qiime2/<distribution>-galaxy:<epoch>
+ quay.io/qiime2/q2galaxy:<epoch>
 ```
 ````
 ````{tab-item} Docker on Apple M-series
@@ -40,7 +40,7 @@ docker container run \
  -p 8021:21 \
  -p 8020:20 \
  --platform "linux/amd64" \
- quay.io/qiime2/<distribution>-galaxy:<epoch>
+ quay.io/qiime2/q2galaxy:<epoch>
 ```
 ````
 ````{tab-item} Podman
@@ -51,7 +51,7 @@ podman container run \
  -p 8021:21 \
  -p 8020:20 \
  --platform "linux/amd64" \
- quay.io/qiime2/<distribution>-galaxy:<epoch>
+ quay.io/qiime2/q2galaxy:<epoch>
 ```
 ````
 ````{tab-item} Podman on Apple M-series
@@ -61,77 +61,18 @@ podman container run \
  -p 8021:21 \
  -p 8020:20 \
  --platform "linux/amd64" \
- quay.io/qiime2/<distribution>-galaxy:<epoch>
+ quay.io/qiime2/q2galaxy:<epoch>
 ```
 ````
 `````
 
-You will need to replace `<distribution>` and `<epoch>` with the distribution and epoch you are targeting. This will both pull the image and run a container off of it.
+You will need to replace `<distribution>` and `<epoch>` with the distribution and epoch you are targeting. The first time you run this command it will both pull the image and run a container off of it. Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
+
+```{admonition} Subsequent runs of the container
+Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. To do this, you will need to get the id of your container. How to do this is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool to get the id of your container. Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
+```
 
 (use-container)=
-## Using the container image
+## Using the container
 
-Open a web browser and navigate to localhost:8080. You will get a 502 page while Galaxy is booting. Within a few minutes you should be able to refresh and see the Galaxy page.
-
-Your Galaxy history will be saved in the container, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. This can be done by swapping out `quay.io/qiime2/<distribution>-galaxy:<epoch>` with the name of the image. How to get the name of the image is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool.
-
-(build-the-galaxy-image)=
-## Building the image locally (optional; experts only ♦♦)
-
-**Expert users** may ultimately be interested in modifying the image used here.
-This can be done with `docker` or `podman` as follows.
-[Pulling the image](pull-galaxy-image) will be quicker and easier.
-
-```{admonition} Podman Sudo
-Podman may require you to use `sudo podman image build` which would require you to use `sudo podman container run` to actually use the image.
-```
-
-<!-- TODO: This will look something like the following, exact instructions dependent on final form of Dockerfile
-
-1. Clone q2galaxy
-
-2. Get an env.yml for the env you want to use in galaxy
-
-3. Run q2galaxy's prepare.sh on that yaml
-
-4. Run docker/podman build on the tools produced
-
- -->
-
-
-<!-- TODO: Update this to be the real one when it exists -->
-First, download the Dockerfile for the workshop container.
-```shell
-wget https://raw.githubusercontent.com/qiime2/q2galaxy/refs/heads/dev/docker/Dockerfile
-```
-
-Then, edit the file to specify the epoch (e.g., 2024.10) and distribution (e.g., `amplicon`) that you want to build your container for.
-
-Next, make sure that the Docker daemon is running (e.g. by launching Docker Desktop).
-
-Finally, build the image.
-
-`````{tab-set}
-````{tab-item} Docker
-```shell
-docker image build -t my-image-name .
-```
-````
-````{tab-item} Docker on Apple M-series
-```shell
-docker image build -t my-image-name --platform "linux/amd64" .
-```
-````
-````{tab-item} Podman
-```shell
-podman image build -t my-image-name .
-```
-````
-````{tab-item} Podman on Apple M-series
-```shell
-podman image build -t my-image-name --platform "linux/amd64" .
-```
-````
-`````
-
-Note: This is also doable with Podman, but you may need to do `sudo podman image build` which may then require you to use `sudo podman` to use the image.
+Once your container is running, open a web browser and navigate to localhost:8080. You will get a 502 page while Galaxy is booting. Within a few minutes you should be able to refresh and see the Galaxy page. At this point you can use Galaxy as normal and your Galaxy History will be saved in the container you are running.
