@@ -66,7 +66,7 @@ podman container run \
 ````
 `````
 
-You will need to replace `<distribution>` and `<epoch>` with the distribution and epoch you are targeting. The first time you run this command it will both pull the image and run a container off of it. Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
+You will need to replace `<epoch>` with the epoch you are targeting. To view available epochs, visit [quay.io/qiime2/q2galaxy](https://quay.io/qiime2/q2galaxy). The first time you run this command it will both pull the image and run a container off of it. Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
 
 ```{admonition} Subsequent runs of the container
 Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. To do this, you will need to get the id of your container. How to do this is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool to get the id of your container. Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
