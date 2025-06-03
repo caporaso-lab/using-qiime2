@@ -83,7 +83,7 @@ Once you have your container id, run the above command but swap out `quay.io/qii
 (use-galaxy-container)=
 ## Using the container
 
-Once your container is running, open a web browser and navigate to https://localhost:8080.
+Once your container is running, open a web browser and navigate to http://localhost:8080.
 You will get a 502 error page while Galaxy is booting.
 Within a few minutes you should be able to refresh and see the Galaxy page.
 At this point you can use Galaxy as normal and your Galaxy History will be saved in the container you are running.
