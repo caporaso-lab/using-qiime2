@@ -67,13 +67,23 @@ podman container run \
 ````
 `````
 
-You will need to replace `<epoch>` with the epoch you are targeting. To view available epochs, visit [quay.io/qiime2/q2galaxy](https://quay.io/qiime2/q2galaxy). The first time you run this command it will both pull the image and run a container off of it. Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
+You will need to replace `<epoch>` with the epoch you are targeting.
+To view available epochs, visit [quay.io/qiime2/q2galaxy](https://quay.io/qiime2/q2galaxy).
+The first time you run this command it will both pull the image and run a container off of it.
+Every subsequent time it will see that you already have the image and will create a new container without pulling it again.
 
 ```{admonition} Subsequent runs of the container
-Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one. To do this, you will need to get the id of your container. How to do this is dependent on whether you are using `docker` or `podman` and how you are using them. Please consult the documentation for your chosen tool for instructions on how get the id of your container. Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
+Your Galaxy history will be saved in the container you are using, so if you want to resume from where you left off make sure to run the same container again instead of creating a new one.
+To do this, you will need to get the id of your container.
+How to do this is dependent on whether you are using `docker` or `podman` and how you are using them.
+Please consult the documentation for your chosen tool for instructions on how get the id of your container.
+Once you have your container id, run the above command but swap out `quay.io/qiime2/q2galaxy:<epoch>` out with the container id.
 ```
 
-(use-container)=
+(use-galaxy-container)=
 ## Using the container
 
-Once your container is running, open a web browser and navigate to localhost:8080. You will get a 502 page while Galaxy is booting. Within a few minutes you should be able to refresh and see the Galaxy page. At this point you can use Galaxy as normal and your Galaxy History will be saved in the container you are running.
+Once your container is running, open a web browser and navigate to https://localhost:8080.
+You will get a 502 error page while Galaxy is booting.
+Within a few minutes you should be able to refresh and see the Galaxy page.
+At this point you can use Galaxy as normal and your Galaxy History will be saved in the container you are running.
