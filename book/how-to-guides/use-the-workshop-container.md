@@ -237,7 +237,7 @@ If using Docker, once you're done using your container and don't have any other 
 
 **Expert users** may ultimately be interested in modifying the image used here.
 This can be done with `docker` as follows.
-[Pulling the image](pull-workshop-image) will be quicker and easier.
+[Pulling the image](#pull-workshop-image) will be quicker and easier.
 
 First, download the Dockerfile for the workshop container.
 ```shell

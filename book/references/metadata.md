@@ -9,7 +9,7 @@ Thus it's usually straightforward to manipulate QIIME 2 metadata using the softw
 If in doubt, we recommend using a spreadsheet program such as Google Sheets to edit and export your metadata files.
 
 Because metadata files contain tabular data, we describe their formatting in terms of **rows** and **columns**.
-The commonality across QIIME 2 metadata files is that the first [non-comment, non-empty](comments-and-empty-rows) row of the file defines the column headers, and the first column contains a unique identifier for each metadata entry.
+The commonality across QIIME 2 metadata files is that the first [non-comment, non-empty](#comments-and-empty-rows) row of the file defines the column headers, and the first column contains a unique identifier for each metadata entry.
 The following sections describe the formatting requirements for QIIME 2 metadata files.
 
 There is no universal standard for TSV files.
@@ -27,7 +27,7 @@ For example, subject names should be replaced with anonymized subject identifier
 ```
 
 ```{warning}
-Spreadsheet editors often have auto-correct or auto-format features that will modify your data without alerting you that changes will be made {cite}`Ziemann2016`.
+Spreadsheet editors often have auto-correct or auto-format features that will modify your data without alerting you that changes will be made (e.g., see [Ziemann et al. (2016)](https://doi.org/10.1186/s13059-016-1044-7)).
 This is something that you need to watch out for when working with your metadata files in spreadsheet editors.
 ```
 
@@ -118,8 +118,8 @@ The following rules apply to metadata values and cells:
 - May consist of any Unicode characters.
 - Empty cells represent *missing data*.
   Other values such as `NA` are not interpreted as missing data; only the empty cell is recognized as "missing".
-  Note that cells consisting solely of whitespace characters are also interpreted as *missing data* because [leading and trailing whitespace characters are always ignored](metadata-whitespace), effectively making the cell empty.
-  For more advanced ways to handle missing data, see [](advanced-missing-metadata).
+  Note that cells consisting solely of whitespace characters are also interpreted as *missing data* because [leading and trailing whitespace characters are always ignored](#metadata-whitespace), effectively making the cell empty.
+  For more advanced ways to handle missing data, see [](#advanced-missing-metadata).
 
 (metadata-whitespace)=
 ## Leading and trailing whitespace characters
@@ -147,7 +147,7 @@ If you plan to apply these or similar methods where metadata values can become i
 
 ```{tip}
 We recommend the [cual-id](https://github.com/johnchase/cual-id) software for assistance with creating sample identifiers.
-The cual-id paper {cite}`cual-id` also provides some discussion on how to design identifiers.
+The [cual-id paper](https://doi.org/10.1128/mSystems.00010-15) also provides some discussion on how to design identifiers.
 ```
 
 ```{note}
@@ -252,5 +252,5 @@ If a row doesn't contain as many fields as declared by the header, empty cells w
 
 
 [^metadata-tsv-exception]: In addition to TSV files, some QIIME 2 Artifacts (i.e. `.qza` files) can also be used as metadata.
- See [](view-artifacts-as-metadata) for details.
+ See [](#view-artifacts-as-metadata) for details.
 [^36-characters]: The length recommended here (36 characters or less) is designed to be as short as possible while still supporting version 4 UUIDs formatted with dashes.

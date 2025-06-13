@@ -72,7 +72,7 @@ config = parsl.Config(
 
 ### Parsl configuration, line-by-line
 
-This first line of [the default configuration file presented above](default-parsl-configuration-file) indicates that this is the Parsl section (or [table](https://toml.io/en/v1.0.0#table), to use TOML's terminology) of our configuration file.
+This first line of [the default configuration file presented above](#default-parsl-configuration-file) indicates that this is the Parsl section (or [table](https://toml.io/en/v1.0.0#table), to use TOML's terminology) of our configuration file.
 
 ```
 [parsl]
@@ -119,8 +119,8 @@ In this case, we use [`parsl.providers.LocalProvider`](https://parsl.readthedocs
 
 ### The run_dir parameter
 
-Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`. 
-This indicates the directory that Parsl will write logging info to and it defaults to `./runinfo`. 
+Another parameter to the config that we do not set but that you should definitely be aware of is `run_dir`.
+This indicates the directory that Parsl will write logging info to and it defaults to `./runinfo`.
 This means that if you run a QIIME 2 Pipeline in parallel without this parameter set, a `runinfo` directory will be created inside the directory that you ran the action from.
 
 ### Mapping {term}`Actions <action>` to executors
@@ -207,7 +207,7 @@ class = "SlurmProvider"
 ...
 ```
 
-Note we are still using a HighThroughputExecutor but with a different provider. 
+Note we are still using a HighThroughputExecutor but with a different provider.
 In the default config, we were using the LocalProvider which doesn't take any real configuration to start using.
 In this case we are using the SlurmProvider which requires a lot more configuration.
 Let's break down how to configure the SlurmProvider.
@@ -224,7 +224,7 @@ The full docs for the Parsl SlurmProvider may be found [here](https://parsl.read
 In our documentation, we will break down the ones we have found most necessary.
 
 `max_blocks`: The maximum number of blocks (Parsl jobs) to maintain.
- Parsl will submit *max_blocks* Slurm jobs, but it is not guaranteed they will all actually run. 
+ Parsl will submit *max_blocks* Slurm jobs, but it is not guaranteed they will all actually run.
  When and how they get scheduled is determined by Slurm.
 
 `nodes_per_block`: How many compute nodes to request per Slurm job submitted.
@@ -329,10 +329,10 @@ It requires a significant amount of compute resources to match a large number of
 It will split the input sequences into `--p-num-partitions` (defaults to splitting each sample into its own partition) sets and then classify them in parallel.
 The 10 partitions here corresponds to our 10 blocks.
 We will have 10 different sets of sequences each of which can be submitted to its own block.
-The 20 threads here corresponds to our 20 `cores_per_worker`. 
+The 20 threads here corresponds to our 20 `cores_per_worker`.
 This allows us to classify `num_blocks * workers_per_block * cores_per_worker` or `10 * 1 * 20 = 200` sequences at a time.
 
-We make sure to set our `TMPDIR` and the [Artifact Cache](artifact-cache-tutorial) we are using for this action to a location that is accessible globally on the HPC we are using.
+We make sure to set our `TMPDIR` and the [Artifact Cache](#artifact-cache-tutorial) we are using for this action to a location that is accessible globally on the HPC we are using.
 It is important that you do this to make sure your actions which will be spread across compute nodes are writing information that needs to be shared amongst them to a location they can all see.
 
 This job has a walltime of 24 hours which is significantly longer than the jobs we will be submitting.

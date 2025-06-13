@@ -7,7 +7,18 @@ This allows for faster execution of QIIME 2 `Pipelines`, assuming the compute re
 Parallel Pipeline execution is accessible in different ways depending on which interface you're using.
 Here we illustrate how to run `Pipelines` in parallel using {term}`q2cli` and {term}`QIIME 2's Python 3 API <Python 3 API>`.
 
-{{ tutorial_environment_block }}
+````{admonition} Reminder
+:class: tip
+:label: tutorial_environment_block
+
+These examples assume that you have a QIIME 2 deployment that includes the [q2-dwq2](https://github.com/caporaso-lab/q2-dwq2) educational plugin.
+Follow the instructions in [](#tutorial-setup) if you'd like to follow along with this tutorial.
+If you've already followed those instructions, before following this tutorial be sure to activate your conda environment as follows:
+
+```python
+conda activate using-qiime2
+```
+````
 
 ## q2cli
 
@@ -50,7 +61,7 @@ qiime dwq2 search-and-summarize \
 ```
 
 To re-run this `Pipeline` in parallel, append the `--parallel` flag.
-This will run this command in parallel using a default parallel configuration (learn more about this in [](parallel-configuration)).
+This will run this command in parallel using a default parallel configuration (learn more about this in [](#parallel-configuration)).
 Note that the output filenames this time are adapted to **prepend `parallel-` to each file name**.
 
 ```shell
@@ -70,7 +81,7 @@ If you're using a system with parallel computing capabilities (e.g., at least si
 
 Parallel Pipeline execution through the Python API is done using a `ParallelConfig` object as a context manager.
 These objects take a `parsl.Config` object and an optional dictionary mapping action names to executor names as input.
-If no config is provided your default configuration will be used (see [](qiime2-configuration-precedence)).
+If no config is provided your default configuration will be used (see [](#qiime2-configuration-precedence)).
 
 ```python
 from qiime2.sdk.parallel_config import ParallelConfig
@@ -117,7 +128,7 @@ with ParallelConfig(parallel_config=c, action_executor_mapping=m):
 
 ## Parsl configuration
 
-To learn how to configure Parsl for your own usage, refer to [](parallel-configuration).
+To learn how to configure Parsl for your own usage, refer to [](#parallel-configuration).
 
 [^formal-informal-parallel]: QIIME 2 {term}`Actions <Action>` can provide formal (i.e., Parsl-based) or informal (e.g., multi-threaded execution of a third party program) parallel computing support.
- To learn more about the distinction, see [](types-of-parallel-support).
+ To learn more about the distinction, see [](#types-of-parallel-support).

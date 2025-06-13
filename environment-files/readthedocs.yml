@@ -1,0 +1,12 @@
+channels:
+- https://packages.qiime2.org/qiime2/2025.7/tiny/passed
+- conda-forge
+- bioconda
+dependencies:
+  - qiime2-tiny
+  - nodejs
+  - pip
+  - pip:
+    - jupyter-book>=2.0.0a3
+    - q2doc@git+https://github.com/qiime2/sphinx-ext-qiime2.git@master
+    - q2-dwq2@git+https://github.com/caporaso-lab/q2-dwq2.git@main

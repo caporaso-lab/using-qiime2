@@ -1,7 +1,7 @@
 (metadata-merge)=
 # How to merge metadata
 
-Metadata can come from many different sources, and some QIIME 2 artifacts also [look and behave a lot like metadata](view-artifacts-as-metadata).
+Metadata can come from many different sources, and some QIIME 2 artifacts also [look and behave a lot like metadata](#view-artifacts-as-metadata).
 QIIME 2 therefore has a few different ways to handle metadata merging.
 
 ## Implicit merging
@@ -31,7 +31,7 @@ Merging metadata with **neither overlapping ids or overlapping column names** is
 Call `qiime metadata merge --help` for detailed information on how to use this command.
 
 Attempting to merge metadata with both overlapping ids and overlapping columns will currently fail because conflicting column values for a sample are not resolved.
-See [](merge-metadata-conflict) for more discussion of this topic.
+See [](#merge-metadata-conflict) for more discussion of this topic.
 
 To explicitly merge more than two metadata objects, run this command multiple times, iteratively, using the output of the previous run as one of the metadata inputs.
 
@@ -41,7 +41,7 @@ This artifact can be used anywhere that a metadata file can be used, or it can b
 ## Merging Artifacts with Metadata
 
 Both implicit and explicit merging of metadata also works with artifacts that can be viewed as metadata.
-(See [](view-artifacts-as-metadata) for details on this concept.)
+(See [](#view-artifacts-as-metadata) for details on this concept.)
 For example, it might be interesting to have the option to color points in an Emperor plot based on the sample alpha diversity, in addition to the typical sample metadata.
 This can be accomplished by providing both the sample metadata file *and* the ``SampleData[AlphaDiversity]`` artifact as metadata files in an implicit merge:
 
