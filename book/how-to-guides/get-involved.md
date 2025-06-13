@@ -21,7 +21,7 @@ That could include:
 
 Anyone can teach a QIIME 2 workshop.
 To make it easier, we created and maintain a workshop version of our Docker containers.
-You can find instructions on how to use this in [](workshop-container).
+You can find instructions on how to use this in [](#workshop-container).
 You can also find full video courses on QIIME 2 on our [YouTube channel](https://youtube.com/qiime2) - feel free to reference those and/or reuse any content (just be sure to attribute it to the creator as necessary).
 
 It's never too early to start teaching what you know, and it's a fantastic way to solidify your knowledge and build your skill set.

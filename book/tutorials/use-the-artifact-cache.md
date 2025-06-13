@@ -32,7 +32,7 @@ As long as the cache is stored in a location that all worker nodes can access, i
 
 ## Tutorial
 
-{{ tutorial_environment_block }}
+![](#tutorial_environment_block)
 
 The following steps will illustrate how to create a new cache, add an artifact to it, use an artifact from it, and more.
 Note that the steps in the tutorial may require that some or all of the preceding steps have been run.
@@ -138,7 +138,7 @@ Now, you can reference the artifact from the cache when calling Actions.
 Artifacts in a cache are referenced as `path-to-cache:key`.
 So, as long as you're working in the same directory as where your cache is stored, the following command should run.
 (This command does take a couple of minutes to run.
-If you want it to go faster, you can run it in parallel](parallel-tutorial).)
+If you want it to go faster, you can run it in parallel](#parallel-tutorial).)
 
 `````{tab-set}
 ````{tab-item} Command line interface

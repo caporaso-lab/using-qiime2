@@ -1,17 +1,19 @@
 version: 1
 project:
   title: Using QIIME 2
-  authors:
-    - name: Greg Caporaso
-  copyright: '2024'
+  copyright: '2025'
   exclude:
     - _build
     - Thumbs.db
     - .DS_Store
     - '**.ipynb_checkpoints'
   github: caporaso-lab/using-qiime2
-  bibliography:
-    - _static/references.bib
+  references:
+    q2doc-api-target: https://develop.qiime2.org/en/latest/
+    q2doc-usage-target: https://use.qiime2.org/en/latest/
+    q2doc-library-target: https://library.qiime2.org
+    q2doc-amplicon-target: https://amplicon-docs.qiime2.org/en/latest/
+    q2-boots-target: https://q2-boots.readthedocs.io/en/latest/
   exports:
     - format: pdf
       template: plain_latex_book
@@ -45,9 +47,11 @@ project:
     - title: Back matter
       children:
         - file: back-matter/glossary.md
-        - file: back-matter/bibliography.md
 site:
+  template: https://github.com/ebolyen/myst-book-theme-poc.git
   options:
-    favicon: _static/favicon.ico
     folders: true
-  template: book-theme
+    favicon: _static/favicon.ico
+    logo: _static/dwq2-light.png
+    logo_dark: _static/dwq2-dark.png
+    pretty_urls: false

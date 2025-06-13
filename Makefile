@@ -1,7 +1,7 @@
-.PHONY: lint install html clean cacheclean
+.PHONY: lint html clean
 
 lint:
-	jupyter book build book/ \
+	cd book && jupyter book build \
 	  --warningiserror \
 	  --nitpick \
 	  --keep-going \
@@ -9,10 +9,7 @@ lint:
 	  --verbose
 
 html:
-	jupyter book build book/
+	cd book && jupyter book build --html
 
 clean:
-	jupyter book clean book/
-
-cacheclean:
-	rm -rf book/_build/
+	cd book && jupyter book clean

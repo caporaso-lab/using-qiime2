@@ -12,11 +12,11 @@ QIIME 2 does not place restrictions on what types of metadata are expected to be
 This is your opportunity to track whatever information you think may be important to your analyses.
 When in doubt, collect as much metadata as possible, as you may not be able to retroactively collect certain types of information.
 
-While QIIME 2 does not enforce standards for what types of metadata to collect, the MIxS and MIMARKS standards {cite}`mimarks` provide recommendations for microbiome studies and may be helpful in determining what information to collect in your study.
+While QIIME 2 does not enforce standards for what types of metadata to collect, the [MIxS and MIMARKS standards](https://doi.org/10.1038/nbt.1823) provide recommendations for microbiome studies and may be helpful in determining what information to collect in your study.
 If you plan to deposit your data in a data archive (e.g. [ENA](https://www.ebi.ac.uk/ena) or [Qiita](https://qiita.ucsd.edu/)), it is also important to determine the types of metadata expected by that resource.
 Different data archives have their own requirements.
 
-For information on how to format your metadata, see [](metadata-formatting-reference).
+For information on how to format your metadata, see [](#metadata-formatting-reference).
 
 ````{margin}
 ```{admonition} Video
