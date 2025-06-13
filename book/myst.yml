@@ -1,0 +1,53 @@
+version: 1
+project:
+  title: Using QIIME 2
+  authors:
+    - name: Greg Caporaso
+  copyright: '2024'
+  exclude:
+    - _build
+    - Thumbs.db
+    - .DS_Store
+    - '**.ipynb_checkpoints'
+  github: caporaso-lab/using-qiime2
+  bibliography:
+    - _static/references.bib
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: intro.md
+    - title: Tutorials
+      children:
+        - file: tutorials/intro.md
+        - file: tutorials/parallel-pipeline.md
+        - file: tutorials/use-the-artifact-cache.md
+    - title: How-tos
+      children:
+        - file: how-to-guides/merge-metadata.md
+        - file: how-to-guides/validate-metadata.md
+        - file: how-to-guides/artifacts-as-metadata.md
+        - file: how-to-guides/view-visualizations.md
+        - file: how-to-guides/pipeline-resumption.md
+        - file: how-to-guides/use-the-workshop-container.md
+        - file: how-to-guides/use-the-galaxy-container.md
+        - file: how-to-guides/get-involved.md
+    - title: Explanations
+      children:
+        - file: explanations/metadata.md
+        - file: explanations/types-of-parallelization.md
+    - title: References
+      children:
+        - file: references/metadata.md
+        - file: references/cache-structure.md
+        - file: references/parallel-configuration.md
+    - title: Back matter
+      children:
+        - file: back-matter/glossary.md
+        - file: back-matter/bibliography.md
+site:
+  options:
+    favicon: _static/favicon.ico
+    folders: true
+  template: book-theme
