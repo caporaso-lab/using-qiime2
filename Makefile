@@ -13,3 +13,6 @@ html:
 
 clean:
 	cd book && jupyter book clean
+
+serve:
+	npx serve book/_build/html/ -p 4000
