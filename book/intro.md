@@ -1,36 +1,54 @@
 # *Using QIIME 2*
 
-**Your guide to becoming a QIIME 2 Framework power user. 🌳**
-
-```{admonition} Development status of this content
-:class: warning
-*Using QIIME 2* is in relatively early development.
-As a result some URLs may change, and some content maybe incomplete or have formatting problems.
-```
+**Your guide to becoming a QIIME 2 Framework power user.**
 
 ## Start reading here 👋
 
-As the ecosystem of QIIME 2 {term}`distributions <distribution>` and {term}`plugins <plugin>` continues to grow, it has become necessary to make a split in the documentation between general-purpose information that describes how to use the **QIIME 2 Framework** (🌳), and how to apply the tools that build on it to achieve your data analysis goals.
+:::{div}
+:class: col-body-left
+As the ecosystem of QIIME 2 {term}`distributions <distribution>` and {term}`plugins <plugin>` continues to grow, it has become necessary to make a split in the documentation between general-purpose information that describes how to use the **QIIME 2 Framework** (Q2F), and how to apply the tools that build on it to achieve your data analysis goals.
+:::
 
-We know that you're interested in QIIME 2 primarily for the latter -- to achieve specific analysis goals related to microbiome data science -- so we'll start by providing references to where you can find that information.
+:::{div}
+:class: col-gutter-right
+<!-- Can't see to get both of these classes working at the same time -->
+<!-- :class: dark:hidden --> 
 
-### Distribution-specific documentation
+```{image} _static/dwq2-light.png
+:height: 175px
+```
+:::
+
+<!--
+:::{div}
+:class: col-gutter-right
+:class: hidden dark:block
+
+```{image} _static/dwq2-dark.png
+:height: 175px
+```
+:::
+-->
+
+We know that you're interested in QIIME 2 primarily for the latter - to achieve specific analysis goals related to microbiome data science - so we'll start by providing references to where you can find that information.
+Generally, the [QIIME 2 Library *Stacks*](https://library.qiime2.org/docs) are the place to go to find links to all of the documentation sources.
+
+
+### Distribution documentation
 
 If you're looking for documentation on how to analyze microbiome marker gene (i.e., amplicon) data, you should refer to the *QIIME 2 amplicon distribution* documentation.
-That documentation is in transition and can now be found at https://amplicon-docs.readthedocs.io.
-If you're looking for the "old" *QIIME 2 amplicon distribution* documentation (`https://docs.qiime2.org`), you can find that [here](https://docs.qiime2.org/2024.10/).
-We're now focusing our documentation effort on https://amplicon-docs.readthedocs.io, but some content is not yet transferred, so the old docs are still relevant.
+That documentation is in transition and can now be found at https://amplicon-docs.qiime2.org.
 
-If you want to analyze microbiome metagenomic data, refer to the [MOSHPIT](https://doi.org/10.1101/2025.01.27.635007) documentation at https://moshpit.readthedocs.io.
+If you want to analyze microbiome metagenomic data, refer to the [MOSHPIT](https://doi.org/10.1101/2025.01.27.635007) documentation at https://moshpit.qiime2.org.
 (MOSHPIT was referred to as the *QIIME 2 metagenome distribution* during its early development.)
 
 If you're looking for documentation on the `tiny` distribution, you're most likely interested in plugin development.
 Welcome!
-Your best reference will be [*Developing with QIIME 2*](https://develop.qiime2.org), our free, online Research Software Engineering text.
+Your best reference will be [*Developing with QIIME 2*](https://develop.qiime2.org), **our free, online Research Software Engineering text**.
 
-### Plugin-specific documentation
+### Plugin documentation
 
-Stand-alone plugins are those that are not included in existing distributions, and these will generally provide their own documentation linked from the new [QIIME 2 Library](https://library.qiime2.org).
+Stand-alone plugins are those that are not included in existing distributions, and these will generally provide their own documentation linked from the [QIIME 2 Library](https://library.qiime2.org).
 The list of these is growing, but some current (as of 28 February 2025) examples include:
 - [`q2-micom`](https://library.qiime2.org/plugin/micom-dev/q2-micom)
 - [`genome-sampler`](https://library.qiime2.org/plugin/caporaso-lab/genome-sampler)
@@ -39,31 +57,31 @@ The list of these is growing, but some current (as of 28 February 2025) examples
 - [`q2-amrfinderplus`](https://library.qiime2.org/plugin/bokulich-lab/q2-amrfinderplus)
 - [`q2-fmt`](https://library.qiime2.org/plugin/qiime2/q2-fmt)
 
-### Data-set specific documentation
+### Dataset-specific documentation
 
 We expect to increasingly have documentation that is focused on analysis of specific interesting data sets.
-A good current example of this is the [QIIME 2 **C**ancer **A**utoFMT **T**utorial (q2-cat-book)](https://q2-cat-book.readthedocs.io/en/latest/).
-Another one that is planned will be based on the [Meilander *et al.* (2024)](https://doi.org/10.48550/arXiv.2411.04148) "gut-to-soil" study, and will build from our [Artifact Archive on Zenodo](https://zenodo.org/records/13887457).
-
+Good examples are the new [gut-to-soil tutorial](https://gut-to-soil-tutorial.readthedocs.io/en/latest/) and the classic [Moving Pictures tutorial](https://moving-pictures-tutorial.readthedocs.io/en/latest/).
 These will sometimes cross distributions and stand-alone plugins, for example integrating tools from *MOSHPIT*, `q2-boots`, and perhaps even [metabolomics plugins](https://doi.org/10.1038/s41596-024-01046-3), to illustrate microbiome multi-omics analysis workflows.
 
-More on that soon!
-
-### Becoming a QIIME 2 Framework power user 💃🏻
+### QIIME 2 Framework (Q2F) documentation 💃🏻
 
 So what is *Using QIIME 2?*
 
-*Using QIIME 2* serves as a source for you to refer to when you need to accomplish specific tasks that are general to using the **QIIME 2 Framework**.
-The distributions and plugins described above are all built on the QIIME 2 Framework, so *Using QIIME 2* presents information that is general to all of them.
-That includes things like [using `Artifacts` as metadata](#view-artifacts-as-metadata), replaying provenance[^replaying-provenance-issue], [creating and using an artifact cache](#artifact-cache-tutorial), [configuring](#parallel-configuration) and [using](#parallel-tutorial) our [Parsl](http://parsl-project.org/)-based parallel computing framework, and more.
+*Using QIIME 2* serves as a source for you to refer to when you need to accomplish specific tasks that are general to using the **QIIME 2 Framework (Q2F)**.
+The distributions and plugins described above are all built on Q2F, so *Using QIIME 2* presents information that is general to all of them.
+That includes things like [using `Artifacts` as metadata](#view-artifacts-as-metadata), [replaying provenance](https://github.com/caporaso-lab/using-qiime2/issues/13), [creating and using an artifact cache](#artifact-cache-tutorial), [configuring](#parallel-configuration) and [using](#parallel-tutorial) our [Parsl](http://parsl-project.org/)-based parallel computing framework, and more.
 
-*Using QIIME 2* will also include chapters that can help you understand the system when you want to go deeper, including things like what QIIME 2 {term}`Artifacts <artifact>` (e.g., {term}`.qza <qza>` files) and {term}`Visualizations <visualization>` (e.g., {term}`.qzv <qzv>` files) are[^result-explanation-issue], and why you need to import your data before using QIIME 2[^importing-explanation-issue].
+*Using QIIME 2* will also include chapters that can help you understand the system when you want to go deeper, including things like what QIIME 2 {term}`Artifacts <artifact>` (e.g., {term}`.qza <qza>` files) and {term}`Visualizations <visualization>` (e.g., {term}`.qzv <qzv>` files) [are](https://github.com/caporaso-lab/using-qiime2/issues/11), and [why you need to import your data before using QIIME 2](https://github.com/caporaso-lab/using-qiime2/issues/12).
 **Understanding these topics will help you carry out advanced biological data science workflows and manage the corresponding data, but they aren't strictly necessary for performing data with tools that build on QIIME 2.**
 
 If you're ready to become a QIIME 2 Framework power user, read on...
 
-```{note}
-At this time (28 February 2025), *Using QIIME 2* is still in relatively early development as we write new content and pull from existing resources.
+
+```{admonition} Development status of this content
+:class: warning
+At this time (19 June 2025), *Using QIIME 2* is still in relatively early development as we write new content and pull from existing resources.
+As a result some URLs may change, and some content maybe incomplete or have formatting problems.
+
 Searching and reading the [QIIME 2 Forum](https://forum.qiime2.org) can help you answer many of your own questions as it now represents nearly 10 years of questions, answers, and discussion about microbiome data science.
 ```
 
@@ -117,9 +135,3 @@ Initial support for the development of QIIME 2 was provided through a [grant](ht
 ## License
 
  <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://use.qiime2.org">Using QIIME 2</a> led by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://cap-lab.bio">Greg Caporaso</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0.</p>
-
-[^replaying-provenance-issue]: See [here](https://github.com/caporaso-lab/using-qiime2/issues/13).
-[^new-library-wip]: The new QIIME 2 Library is in the early stages of development (as of 17 January 2025) - a lot of exciting new functionality for both users and developers is currently in progress!
-For the time-being, you can still find the old QIIME 2 Library at https://old-library.qiime2.org.
-[^result-explanation-issue]: See [here](https://github.com/caporaso-lab/using-qiime2/issues/11).
-[^importing-explanation-issue]: See [here](https://github.com/caporaso-lab/using-qiime2/issues/12).
