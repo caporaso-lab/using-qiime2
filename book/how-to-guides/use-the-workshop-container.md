@@ -123,7 +123,7 @@ docker container run \
   -v qiime2-workshop:/home/qiime2 \
   --name qiime2-workshop \
   -p 8889:8888 \
-  pull quay.io/qiime2/<distribution>-workshop:<epoch>
+  quay.io/qiime2/<distribution>-workshop:<epoch>
 ```
 ````
 
@@ -136,7 +136,7 @@ docker container run \
   --name qiime2-workshop \
   -p 8889:8888 \
   --platform "linux/amd64" \
-  pull quay.io/qiime2/<distribution>-workshop:<epoch>
+  quay.io/qiime2/<distribution>-workshop:<epoch>
 ```
 ````
 
@@ -148,7 +148,7 @@ podman container run \
   -v qiime2-workshop:/home/qiime2 \
   --name qiime2-workshop \
   -p 8889:8888 \
-  pull quay.io/qiime2/<distribution>-workshop:<epoch>
+  quay.io/qiime2/<distribution>-workshop:<epoch>
 ```
 ````
 
@@ -161,7 +161,7 @@ podman container run \
   --name qiime2-workshop \
   -p 8889:8888 \
   --platform "linux/amd64" \
-  pull quay.io/qiime2/<distribution>-workshop:<epoch>
+  quay.io/qiime2/<distribution>-workshop:<epoch>
 ```
 ````
 `````
