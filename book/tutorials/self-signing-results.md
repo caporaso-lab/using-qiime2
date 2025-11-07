@@ -82,7 +82,7 @@ If you have multiple keypairs present, you will see multiple entries that look s
 In each keypair entry, you will see a line that looks something like this:
 
 ```shell
-      7B2B 042B D7F2 7AE4 DF86  18D0 80D7 286B 1D44 DB32
+7B2B 042B D7F2 7AE4 DF86  18D0 80D7 286B 1D44 DB32
 ```
 
 This is the line that contains the keypair fingerprint.
