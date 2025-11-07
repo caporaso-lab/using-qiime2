@@ -25,6 +25,7 @@ project:
         - file: tutorials/intro.md
         - file: tutorials/parallel-pipeline.md
         - file: tutorials/use-the-artifact-cache.md
+        - file: tutorials/self-signing-results.md
     - title: How-tos
       children:
         - file: how-to-guides/merge-metadata.md
