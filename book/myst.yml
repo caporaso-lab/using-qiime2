@@ -25,7 +25,6 @@ project:
         - file: tutorials/intro.md
         - file: tutorials/parallel-pipeline.md
         - file: tutorials/use-the-artifact-cache.md
-        - file: tutorials/self-signing-results.md
     - title: How-tos
       children:
         - file: how-to-guides/merge-metadata.md
@@ -36,6 +35,7 @@ project:
         - file: how-to-guides/use-the-workshop-container.md
         - file: how-to-guides/use-the-galaxy-container.md
         - file: how-to-guides/get-involved.md
+        - file: how-to-guides/sign-and-verify-artifacts.md
     - title: Explanations
       children:
         - file: explanations/metadata.md
