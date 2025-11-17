@@ -16,7 +16,7 @@ The tool we are leveraging for {term}`signature` creation and verification is [G
 GPG is free, open-source software and in the context that we use it here, can be used for creating private/public keypairs, signing of {term}`Results <result>`, and verification of {term}`Signatures <signature>` on signed {term}`Results <result>`.
 
 This is all achieved by using a GPG keypair consisting of a private key and public key.
-The private key is used to sign something, and should be securely managed by the signer (a person or organization) and never shared.
+The private key is used to sign something, and should be securely managed by the signer (i.e. a person or organization) and never shared.
 The public key is used to verify that a signature was created with its corresponding private key (and therefore by the individual or organization who securely manages that private key, assuming they are the only ones who ever had access to it).
 The public key can be shared publicly.
 
