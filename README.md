@@ -14,7 +14,7 @@ To build this documentation locally for development purposes, first create your 
 ```
 cd using-qiime2
 __Q2DEV_ENV_NAME=uq2-$(date "+%Y-%m-%d")
-conda env create -n $__Q2DEV_ENV_NAME$ --file environment-files/readthedocs.yml
+conda env create -n $__Q2DEV_ENV_NAME --file environment-files/readthedocs.yml
 conda activate $__Q2DEV_ENV_NAME
 ```
 
