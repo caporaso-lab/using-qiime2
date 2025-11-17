@@ -12,7 +12,7 @@ This how-to guide will present:
 
 ## Pre-requisites for using Signatures
 
-The tool we are leveraging for {term}`signature` creation and verification is [GNU Privacy Guard](https://www.gnupg.org/documentation/index.html) (also know as GnuPG or GPG).
+The tool we are leveraging for {term}`signature` creation and verification is [GNU Privacy Guard](https://www.gnupg.org/documentation/index.html) (also known as GnuPG or GPG).
 GPG is free, open-source software and in the context that we use it here, can be used for creating private/public keypairs, signing of {term}`Results <result>`, and verification of {term}`Signatures <signature>` on signed {term}`Results <result>`.
 
 This is all achieved by using a GPG keypair consisting of a private key and public key.
